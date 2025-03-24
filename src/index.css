@@ -22,6 +22,18 @@ h1 {
   line-height: 1.1;
 }
 
+button.md\:hidden {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+button.md\:hidden:hover,
+button.md\:hidden:focus {
+  border: none;
+  outline: none;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -29,8 +41,5 @@ h1 {
   }
   a:hover {
     color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
   }
 }
