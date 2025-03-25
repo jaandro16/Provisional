@@ -327,17 +327,15 @@ const CompactHeader = ({ isVisible }) => {
             overflow: 'hidden',
           }}
         >
-          <div className='bg-black backdrop-blur-sm'>
+          <div className='bg-[#0063A6]/95 backdrop-blur-sm'>
             <div className='container mx-auto px-4 py-4'>
               <ul className='flex flex-col font-["Open_Sans"] divide-y divide-gray-400/20'>
                 <li className='py-4'>
-                  <div className='flex items-center justify-between'>
-                    <a
-                      href='/'
-                      className='text-white hover:text-gray-300 text-lg ml-4'
-                    >
-                      Inicio
-                    </a>
+                  <a
+                    href='/'
+                    className='flex items-center justify-between text-white hover:text-gray-300'
+                  >
+                    <span className='text-lg ml-4'>Inicio</span>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
                       className='h-4 w-4 text-white mr-4'
@@ -352,16 +350,134 @@ const CompactHeader = ({ isVisible }) => {
                         d='M9 5l7 7-7 7'
                       />
                     </svg>
+                  </a>
+                </li>
+                <li className='py-4'>
+                  <a
+                    href='/'
+                    className='flex items-center justify-between text-white hover:text-gray-300'
+                  >
+                    <span className='text-lg ml-4'>Equipo</span>
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      className='h-4 w-4 text-white mr-4'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      stroke='currentColor'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M9 5l7 7-7 7'
+                      />
+                    </svg>
+                  </a>
+                </li>
+                <li className='py-4'>
+                  <div
+                    onClick={() => setIsInvestigacionOpen(!isInvestigacionOpen)}
+                    className='flex items-center justify-between text-white hover:text-gray-300 cursor-pointer'
+                  >
+                    <span className='text-lg ml-4'>Investigación</span>
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      className={`h-4 w-4 text-white mr-4 transition-transform duration-300 ${
+                        isInvestigacionOpen ? 'rotate-90' : ''
+                      }`}
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      stroke='currentColor'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M9 5l7 7-7 7'
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                      isInvestigacionOpen ? 'max-h-40 mt-2' : 'max-h-0'
+                    }`}
+                  >
+                    <ul className='flex flex-col space-y-2 pl-8'>
+                      <li>
+                        <a
+                          href='/investigacion/proyectos'
+                          className='text-white hover:text-gray-300 text-base block py-1 ml-4 flex items-center'
+                        >
+                          <svg
+                            xmlns='http://www.w3.org/2000/svg'
+                            className='h-4 w-4 text-white mr-2'
+                            fill='none'
+                            viewBox='0 0 24 24'
+                            stroke='currentColor'
+                          >
+                            <path
+                              strokeLinecap='round'
+                              strokeLinejoin='round'
+                              strokeWidth={2}
+                              d='M9 5l7 7-7 7'
+                            />
+                          </svg>
+                          <span>Proyectos</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href='/investigacion/publicaciones'
+                          className='text-white hover:text-gray-300 text-base block py-1 ml-4 flex items-center'
+                        >
+                          <svg
+                            xmlns='http://www.w3.org/2000/svg'
+                            className='h-4 w-4 text-white mr-2'
+                            fill='none'
+                            viewBox='0 0 24 24'
+                            stroke='currentColor'
+                          >
+                            <path
+                              strokeLinecap='round'
+                              strokeLinejoin='round'
+                              strokeWidth={2}
+                              d='M9 5l7 7-7 7'
+                            />
+                          </svg>
+                          <span>Publicaciones</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href='/investigacion/lineas'
+                          className='text-white hover:text-gray-300 text-base block py-1 ml-4 flex items-center'
+                        >
+                          <svg
+                            xmlns='http://www.w3.org/2000/svg'
+                            className='h-4 w-4 text-white mr-2'
+                            fill='none'
+                            viewBox='0 0 24 24'
+                            stroke='currentColor'
+                          >
+                            <path
+                              strokeLinecap='round'
+                              strokeLinejoin='round'
+                              strokeWidth={2}
+                              d='M9 5l7 7-7 7'
+                            />
+                          </svg>
+                          <span>Líneas de Investigación</span>
+                        </a>
+                      </li>
+                    </ul>
                   </div>
                 </li>
                 <li className='py-4'>
-                  <div className='flex items-center justify-between'>
-                    <a
-                      href='/equipo'
-                      className='text-white hover:text-gray-300 text-lg ml-4'
-                    >
-                      Equipo
-                    </a>
+                  <a
+                    href='/'
+                    className='flex items-center justify-between text-white hover:text-gray-300'
+                  >
+                    <span className='text-lg ml-4'>Docencia</span>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
                       className='h-4 w-4 text-white mr-4'
@@ -376,16 +492,14 @@ const CompactHeader = ({ isVisible }) => {
                         d='M9 5l7 7-7 7'
                       />
                     </svg>
-                  </div>
+                  </a>
                 </li>
                 <li className='py-4'>
-                  <div className='flex items-center justify-between'>
-                    <a
-                      href='/investigacion'
-                      className='text-white hover:text-gray-300 text-lg ml-4'
-                    >
-                      Investigación
-                    </a>
+                  <a
+                    href='/'
+                    className='flex items-center justify-between text-white hover:text-gray-300'
+                  >
+                    <span className='text-lg ml-4'>Contacto</span>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
                       className='h-4 w-4 text-white mr-4'
@@ -400,55 +514,7 @@ const CompactHeader = ({ isVisible }) => {
                         d='M9 5l7 7-7 7'
                       />
                     </svg>
-                  </div>
-                </li>
-                <li className='py-4'>
-                  <div className='flex items-center justify-between'>
-                    <a
-                      href='/docencia'
-                      className='text-white hover:text-gray-300 text-lg ml-4'
-                    >
-                      Docencia
-                    </a>
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      className='h-4 w-4 text-white mr-4'
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      stroke='currentColor'
-                    >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeWidth={2}
-                        d='M9 5l7 7-7 7'
-                      />
-                    </svg>
-                  </div>
-                </li>
-                <li className='py-4'>
-                  <div className='flex items-center justify-between'>
-                    <a
-                      href='/contact'
-                      className='text-white hover:text-gray-300 text-lg ml-4'
-                    >
-                      Contacto
-                    </a>
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      className='h-4 w-4 text-white mr-4'
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      stroke='currentColor'
-                    >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeWidth={2}
-                        d='M9 5l7 7-7 7'
-                      />
-                    </svg>
-                  </div>
+                  </a>
                 </li>
                 <li className='pt-4'>
                   <div className='flex items-center justify-between'>
