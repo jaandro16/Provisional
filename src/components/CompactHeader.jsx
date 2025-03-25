@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 const CompactHeader = ({ isVisible }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isInvestigacionOpen, setIsInvestigacionOpen] = useState(false);
+  const [isDocenciaOpen, setIsDocenciaOpen] = useState(false);
   const buttonRef = useRef(null);
   const menuRef = useRef();
 
@@ -473,14 +474,16 @@ const CompactHeader = ({ isVisible }) => {
                   </div>
                 </li>
                 <li className='py-4'>
-                  <a
-                    href='/'
-                    className='flex items-center justify-between text-white hover:text-gray-300'
+                  <div
+                    onClick={() => setIsDocenciaOpen(!isDocenciaOpen)}
+                    className='flex items-center justify-between text-white hover:text-gray-300 cursor-pointer'
                   >
                     <span className='text-lg ml-4'>Docencia</span>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
-                      className='h-4 w-4 text-white mr-4'
+                      className={`h-4 w-4 text-white mr-4 transition-transform duration-300 ${
+                        isDocenciaOpen ? 'rotate-90' : ''
+                      }`}
                       fill='none'
                       viewBox='0 0 24 24'
                       stroke='currentColor'
@@ -492,7 +495,81 @@ const CompactHeader = ({ isVisible }) => {
                         d='M9 5l7 7-7 7'
                       />
                     </svg>
-                  </a>
+                  </div>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                      isDocenciaOpen ? 'max-h-40 mt-2' : 'max-h-0'
+                    }`}
+                  >
+                    <ul className='flex flex-col space-y-2 pl-8'>
+                      <li>
+                        <a
+                          href='/investigacion/proyectos'
+                          className='text-white hover:text-gray-300 text-base block py-1 ml-4 flex items-center'
+                        >
+                          <svg
+                            xmlns='http://www.w3.org/2000/svg'
+                            className='h-4 w-4 text-white mr-2'
+                            fill='none'
+                            viewBox='0 0 24 24'
+                            stroke='currentColor'
+                          >
+                            <path
+                              strokeLinecap='round'
+                              strokeLinejoin='round'
+                              strokeWidth={2}
+                              d='M9 5l7 7-7 7'
+                            />
+                          </svg>
+                          <span>TFG/TFM</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href='/investigacion/publicaciones'
+                          className='text-white hover:text-gray-300 text-base block py-1 ml-4 flex items-center'
+                        >
+                          <svg
+                            xmlns='http://www.w3.org/2000/svg'
+                            className='h-4 w-4 text-white mr-2'
+                            fill='none'
+                            viewBox='0 0 24 24'
+                            stroke='currentColor'
+                          >
+                            <path
+                              strokeLinecap='round'
+                              strokeLinejoin='round'
+                              strokeWidth={2}
+                              d='M9 5l7 7-7 7'
+                            />
+                          </svg>
+                          <span>Grado</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href='/investigacion/lineas'
+                          className='text-white hover:text-gray-300 text-base block py-1 ml-4 flex items-center'
+                        >
+                          <svg
+                            xmlns='http://www.w3.org/2000/svg'
+                            className='h-4 w-4 text-white mr-2'
+                            fill='none'
+                            viewBox='0 0 24 24'
+                            stroke='currentColor'
+                          >
+                            <path
+                              strokeLinecap='round'
+                              strokeLinejoin='round'
+                              strokeWidth={2}
+                              d='M9 5l7 7-7 7'
+                            />
+                          </svg>
+                          <span>Innovación educativa</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </li>
                 <li className='py-4'>
                   <a
