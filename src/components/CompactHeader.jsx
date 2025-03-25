@@ -29,7 +29,7 @@ const CompactHeader = ({ isVisible }) => {
             <div className='flex items-center'>
               <a href='/'>
                 <img
-                  src='/src/assets/logo.png'
+                  src='logo.png'
                   alt='Logo'
                   className='h-16 cursor-pointer'
                 />
@@ -133,7 +133,7 @@ const CompactHeader = ({ isVisible }) => {
             <div className='flex items-center px-2 mt-5'>
               <a href='/'>
                 <img
-                  src='/src/assets/logo.png'
+                  src='logo.png'
                   alt='Logo'
                   className='h-12 cursor-pointer'
                 />
