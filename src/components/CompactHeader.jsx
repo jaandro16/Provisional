@@ -141,7 +141,7 @@ const CompactHeader = ({ isVisible }) => {
             <button
               ref={buttonRef}
               onClick={toggleMenu}
-              className='md:hidden focus:outline-none px-2 mt-5 border-0 bg-transparent p-0'
+              className='md:hidden focus:outline-none mr-2 mt-5 border-0 bg-transparent p-0'
             >
               <span
                 className={`block w-6 h-0.5 bg-white mb-1 transition-all duration-300 transform ${
