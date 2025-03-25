@@ -1,13 +1,58 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const SubHeader = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isInvestigacionOpen, setIsInvestigacionOpen] = useState(false);
   const [isDocenciaOpen, setIsDocenciaOpen] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const menuRef = useRef(null);
+
+  const closeAllDropdowns = () => {
+    setIsScrolling(true);
+    setIsInvestigacionOpen(false);
+    setIsDocenciaOpen(false);
+    // Reset isScrolling after animation completes
+    setTimeout(() => setIsScrolling(false), 100);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isInvestigacionOpen || isDocenciaOpen) {
+        closeAllDropdowns();
+      }
+    };
+
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        closeAllDropdowns();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isInvestigacionOpen, isDocenciaOpen]);
+
+  const handleInvestigacionClick = () => {
+    setIsScrolling(false);
+    if (isDocenciaOpen) setIsDocenciaOpen(false);
+    setIsInvestigacionOpen(!isInvestigacionOpen);
+  };
+
+  const handleDocenciaClick = () => {
+    setIsScrolling(false);
+    if (isInvestigacionOpen) setIsInvestigacionOpen(false);
+    setIsDocenciaOpen(!isDocenciaOpen);
+  };
 
   return (
     <div className='container mx-auto px-2 sm:px-4 relative'>
       <div
+        ref={menuRef}
         className={`h-16
           w-full md:w-[680px]
           bg-white
@@ -19,6 +64,12 @@ const SubHeader = () => {
           md:-mt-8
           md:-mb-8
           z-50
+          ${
+            isInvestigacionOpen || isDocenciaOpen
+              ? 'border-b border-gray-200'
+              : ''
+          }
+          md:border-b-0
         `}
       >
         {/* Search overlay for mobile */}
@@ -47,7 +98,7 @@ const SubHeader = () => {
             <li className='flex flex-col relative'>
               <div
                 className='flex items-center space-x-1 cursor-pointer'
-                onClick={() => setIsInvestigacionOpen(!isInvestigacionOpen)}
+                onClick={handleInvestigacionClick}
               >
                 <span className='text-gray-700 hover:text-gray-900'>
                   Investigación
@@ -72,16 +123,27 @@ const SubHeader = () => {
               <div
                 className={`
                   fixed left-0
-                  w-full
+                  w-screen
                   bg-white
                   shadow-lg
-                  transition-all duration-300 ease-in-out
+                  ${
+                    isScrolling
+                      ? 'transition-all duration-75'
+                      : 'transition-all duration-500'
+                  }
+                  ease-in-out
                   md:hidden
-                  ${isInvestigacionOpen ? 'max-h-64' : 'max-h-0'}
+                  ${
+                    isInvestigacionOpen
+                      ? 'max-h-221 opacity-100 pointer-events-auto'
+                      : 'max-h-0 opacity-0 pointer-events-none'
+                  }
                   overflow-hidden
                 `}
                 style={{
-                  top: '221px', // altura del header
+                  top: menuRef.current
+                    ? `${menuRef.current.getBoundingClientRect().bottom}px`
+                    : '0',
                 }}
               >
                 <div className='py-2'>
@@ -157,10 +219,10 @@ const SubHeader = () => {
             <li className='flex flex-col relative'>
               <div
                 className='flex items-center space-x-1 cursor-pointer'
-                onClick={() => setIsDocenciaOpen(!isDocenciaOpen)}
+                onClick={handleDocenciaClick}
               >
                 <span className='text-gray-700 hover:text-gray-900'>
-                  Investigación
+                  Docencia
                 </span>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -181,16 +243,27 @@ const SubHeader = () => {
               <div
                 className={`
                   fixed left-0
-                  w-full
+                  w-screen
                   bg-white
                   shadow-lg
-                  transition-all duration-300 ease-in-out
+                  ${
+                    isScrolling
+                      ? 'transition-all duration-75'
+                      : 'transition-all duration-500'
+                  }
+                  ease-in-out
                   md:hidden
-                  ${isDocenciaOpen ? 'max-h-64' : 'max-h-0'}
+                  ${
+                    isDocenciaOpen
+                      ? 'max-h-221 opacity-100 pointer-events-auto'
+                      : 'max-h-0 opacity-0 pointer-events-none'
+                  }
                   overflow-hidden
                 `}
                 style={{
-                  top: '221px',
+                  top: menuRef.current
+                    ? `${menuRef.current.getBoundingClientRect().bottom}px`
+                    : '0',
                 }}
               >
                 <div className='py-2'>
