@@ -327,7 +327,7 @@ const CompactHeader = ({ isVisible }) => {
             overflow: 'hidden',
           }}
         >
-          <div className='bg-[#0063A6]/95 backdrop-blur-sm'>
+          <div className='bg-black backdrop-blur-sm'>
             <div className='container mx-auto px-4 py-4'>
               <ul className='flex flex-col font-["Open_Sans"] divide-y divide-gray-400/20'>
                 <li className='py-4'>
