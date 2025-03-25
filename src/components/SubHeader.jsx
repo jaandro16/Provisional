@@ -86,7 +86,7 @@ const SubHeader = () => {
             {isSearchOpen ? (
               <svg
                 xmlns='http://www.w3.org/2000/svg'
-                className='h-4 w-4 sm:h-5 sm:w-5 cursor-pointer text-gray-700 hover:text-gray-900 z-51'
+                className='h-4 w-4 sm:h-5 sm:w-5 cursor-pointer text-gray-700 hover:text-gray-900 z-51 mr-4'
                 fill='none'
                 viewBox='0 0 24 24'
                 stroke='currentColor'
