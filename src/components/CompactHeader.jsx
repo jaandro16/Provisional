@@ -5,14 +5,47 @@ const CompactHeader = ({ isVisible }) => {
   const [isInvestigacionOpen, setIsInvestigacionOpen] = useState(false);
   const [isDocenciaOpen, setIsDocenciaOpen] = useState(false);
   const buttonRef = useRef(null);
-  const menuRef = useRef();
+  const menuRef = useRef(null);
+
+  const handleInvestigacionClick = () => {
+    setIsDocenciaOpen(false);
+    setIsInvestigacionOpen((prev) => !prev);
+  };
+
+  const handleDocenciaClick = () => {
+    setIsInvestigacionOpen(false);
+    setIsDocenciaOpen((prev) => !prev);
+  };
 
   // Cerrar menú cuando el header se oculta
   useEffect(() => {
     if (!isVisible) {
       setMenuOpen(false);
+      setIsInvestigacionOpen(false);
+      setIsDocenciaOpen(false);
     }
   }, [isVisible]);
+
+  // Modificar el useEffect para el clickOutside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const isClickInside = menuRef.current?.contains(event.target);
+      const isInvestigacionButton = event.target.closest(
+        '[data-dropdown="investigacion"]'
+      );
+      const isDocenciaButton = event.target.closest(
+        '[data-dropdown="docencia"]'
+      );
+
+      if (!isClickInside && !isInvestigacionButton && !isDocenciaButton) {
+        setIsInvestigacionOpen(false);
+        setIsDocenciaOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
@@ -29,7 +62,7 @@ const CompactHeader = ({ isVisible }) => {
             <div className='flex items-center'>
               <a href='/'>
                 <img
-                  src='logo.png'
+                  src='/src/assets/logo.png'
                   alt='Logo'
                   className='h-16 cursor-pointer'
                 />
@@ -37,72 +70,263 @@ const CompactHeader = ({ isVisible }) => {
             </div>
             <div className='flex items-center space-x-8'>
               <ul className='flex items-center space-x-8 font-["Open_Sans"]'>
-                <li>
+                <li className='relative'>
                   <a
                     href='/equipo'
-                    className='!text-white hover:!text-gray-300 text-base'
+                    className='!text-white hover:!text-gray-300 text-base relative group'
                   >
-                    Equipo
+                    <span>Equipo</span>
+                    <span className='absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full'></span>
                   </a>
                 </li>
-                <li className='flex items-center space-x-1 cursor-pointer'>
-                  <a
-                    href='/investigacion'
-                    className='!text-white hover:!text-gray-300 text-base'
+                <li className='flex flex-col relative'>
+                  <div
+                    className='flex items-center space-x-1 cursor-pointer relative group'
+                    onClick={handleInvestigacionClick}
+                    data-dropdown='investigacion'
                   >
-                    Investigación
-                  </a>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    className='text-white h-4 w-4 mt-[2px]'
-                    fill='none'
-                    viewBox='0 0 24 24'
-                    stroke='currentColor'
+                    <span className='!text-white hover:!text-gray-300 text-base'>
+                      Investigación
+                    </span>
+                    <span
+                      className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${
+                        isInvestigacionOpen
+                          ? 'w-full'
+                          : 'w-0 group-hover:w-full'
+                      }`}
+                    ></span>
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      className={`text-white h-4 w-4 mt-[2px] transition-transform duration-300 ${
+                        isInvestigacionOpen ? 'rotate-180' : ''
+                      }`}
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      stroke='currentColor'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M19 9l-7 7-7-7'
+                      />
+                    </svg>
+                  </div>
+
+                  {/* Dropdown para pantallas grandes */}
+                  <div
+                    className={`
+                      absolute top-full left-0
+                      bg-[#0063A6]
+                      rounded-b-lg
+                      shadow-lg
+                      transition-all duration-300 ease-in-out
+                      ${
+                        isInvestigacionOpen
+                          ? 'opacity-100 visible'
+                          : 'opacity-0 invisible'
+                      }
+                      min-w-[240px]
+                      mt-2.5
+                      border border-[#0074c4]/30
+                      shadow-[0_4px_6px_-1px_rgba(0,0,0,0.3)]
+                    `}
                   >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      strokeWidth={2}
-                      d='M19 9l-7 7-7-7'
-                    />
-                  </svg>
+                    <div className='py-2'>
+                      <a
+                        href='/investigacion/proyectos'
+                        className='flex items-center px-4 py-2 text-white hover:bg-[#0074c4] transition-colors duration-150'
+                      >
+                        <svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          className='h-4 w-4 text-gray-300 mr-3'
+                          fill='none'
+                          viewBox='0 0 24 24'
+                          stroke='currentColor'
+                        >
+                          <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            strokeWidth={2}
+                            d='M9 5l7 7-7 7'
+                          />
+                        </svg>
+                        <span>Proyectos</span>
+                      </a>
+                      <a
+                        href='/investigacion/publicaciones'
+                        className='flex items-center px-4 py-2 text-white hover:bg-[#0074c4] transition-colors duration-150'
+                      >
+                        <svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          className='h-4 w-4 text-gray-300 mr-3'
+                          fill='none'
+                          viewBox='0 0 24 24'
+                          stroke='currentColor'
+                        >
+                          <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            strokeWidth={2}
+                            d='M9 5l7 7-7 7'
+                          />
+                        </svg>
+                        <span>Publicaciones</span>
+                      </a>
+                      <a
+                        href='/investigacion/lineas'
+                        className='flex items-center px-4 py-2 text-white hover:bg-[#0074c4] transition-colors duration-150'
+                      >
+                        <svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          className='h-4 w-4 text-gray-300 mr-3'
+                          fill='none'
+                          viewBox='0 0 24 24'
+                          stroke='currentColor'
+                        >
+                          <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            strokeWidth={2}
+                            d='M9 5l7 7-7 7'
+                          />
+                        </svg>
+                        <span>Líneas de Investigación</span>
+                      </a>
+                    </div>
+                  </div>
                 </li>
-                <li className='flex items-center space-x-1 cursor-pointer'>
-                  <a
-                    href='/docencia'
-                    className='!text-white hover:!text-gray-300 text-base'
+                <li className='flex flex-col relative'>
+                  <div
+                    className='flex items-center space-x-1 cursor-pointer relative group'
+                    onClick={handleDocenciaClick}
+                    data-dropdown='docencia'
                   >
-                    Docencia
-                  </a>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    className='text-white h-4 w-4 mt-[2px]'
-                    fill='none'
-                    viewBox='0 0 24 24'
-                    stroke='currentColor'
+                    <span className='!text-white hover:!text-gray-300 text-base'>
+                      Docencia
+                    </span>
+                    <span
+                      className={`absolute -bottom-1 left-0 h-0.5 bg-white transition-all duration-300 ${
+                        isDocenciaOpen ? 'w-full' : 'w-0 group-hover:w-full'
+                      }`}
+                    ></span>
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      className={`text-white h-4 w-4 mt-[2px] transition-transform duration-300 ${
+                        isDocenciaOpen ? 'rotate-180' : ''
+                      }`}
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      stroke='currentColor'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M19 9l-7 7-7-7'
+                      />
+                    </svg>
+                  </div>
+
+                  {/* Dropdown para pantallas grandes */}
+                  <div
+                    className={`
+                      absolute top-full left-0
+                      bg-[#0063A6]
+                      rounded-b-lg
+                      shadow-lg
+                      transition-all duration-300 ease-in-out
+                      ${
+                        isDocenciaOpen
+                          ? 'opacity-100 visible'
+                          : 'opacity-0 invisible'
+                      }
+                      min-w-[230px]
+                      mt-2.5
+                      border border-[#0074c4]/30
+                      shadow-[0_4px_6px_-1px_rgba(0,0,0,0.3)]
+                    `}
                   >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      strokeWidth={2}
-                      d='M19 9l-7 7-7-7'
-                    />
-                  </svg>
+                    <div className='py-2'>
+                      <a
+                        href='/docencia/tfg'
+                        className='flex items-center px-4 py-2 text-white hover:bg-[#0074c4] transition-colors duration-150'
+                      >
+                        <svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          className='h-4 w-4 text-gray-300 mr-3'
+                          fill='none'
+                          viewBox='0 0 24 24'
+                          stroke='currentColor'
+                        >
+                          <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            strokeWidth={2}
+                            d='M9 5l7 7-7 7'
+                          />
+                        </svg>
+                        <span>TFG/TFM</span>
+                      </a>
+                      <a
+                        href='/docencia/grado'
+                        className='flex items-center px-4 py-2 text-white hover:bg-[#0074c4] transition-colors duration-150'
+                      >
+                        <svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          className='h-4 w-4 text-gray-300 mr-3'
+                          fill='none'
+                          viewBox='0 0 24 24'
+                          stroke='currentColor'
+                        >
+                          <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            strokeWidth={2}
+                            d='M9 5l7 7-7 7'
+                          />
+                        </svg>
+                        <span>Grado</span>
+                      </a>
+                      <a
+                        href='/docencia/innovacion'
+                        className='flex items-center px-4 py-2 text-white hover:bg-[#0074c4] transition-colors duration-150'
+                      >
+                        <svg
+                          xmlns='http://www.w3.org/2000/svg'
+                          className='h-4 w-4 text-gray-300 mr-3'
+                          fill='none'
+                          viewBox='0 0 24 24'
+                          stroke='currentColor'
+                        >
+                          <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            strokeWidth={2}
+                            d='M9 5l7 7-7 7'
+                          />
+                        </svg>
+                        <span>Innovación educativa</span>
+                      </a>
+                    </div>
+                  </div>
                 </li>
-                <li>
+                <li className='relative'>
                   <a
                     href='/'
-                    className='!text-white hover:!text-gray-300 text-base'
+                    className='!text-white hover:!text-gray-300 text-base relative group'
                   >
-                    Inicio
+                    <span>Inicio</span>
+                    <span className='absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full'></span>
                   </a>
                 </li>
-                <li>
+                <li className='relative'>
                   <a
                     href='/contact'
-                    className='!text-white hover:!text-gray-300 text-base'
+                    className='!text-white hover:!text-gray-300 text-base relative group'
                   >
-                    Contacto
+                    <span>Contacto</span>
+                    <span className='absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full'></span>
                   </a>
                 </li>
                 <div className='h-6 w-[1px] bg-gray-300'></div>
@@ -133,7 +357,7 @@ const CompactHeader = ({ isVisible }) => {
             <div className='flex items-center px-2 mt-5'>
               <a href='/'>
                 <img
-                  src='logo.png'
+                  src='/src/assets/logo.png'
                   alt='Logo'
                   className='h-12 cursor-pointer'
                 />

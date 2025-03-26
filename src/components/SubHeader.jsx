@@ -5,26 +5,89 @@ const SubHeader = () => {
   const [isInvestigacionOpen, setIsInvestigacionOpen] = useState(false);
   const [isDocenciaOpen, setIsDocenciaOpen] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const menuRef = useRef(null);
 
-  const closeAllDropdowns = () => {
+  const closeAllDropdowns = (callback = null) => {
     setIsScrolling(true);
+    setIsTransitioning(true);
     setIsInvestigacionOpen(false);
     setIsDocenciaOpen(false);
-    // Reset isScrolling after animation completes
-    setTimeout(() => setIsScrolling(false), 100);
+
+    // Wait for animation to complete
+    setTimeout(() => {
+      setIsScrolling(false);
+      setIsTransitioning(false);
+      if (callback) callback();
+    }, 300); // Match the duration-300 from the transition
+  };
+
+  const handleInvestigacionClick = () => {
+    if (isTransitioning) return;
+
+    if (isSearchOpen) {
+      setIsSearchOpen(false);
+      setTimeout(() => {
+        setIsScrolling(false);
+        if (isDocenciaOpen) setIsDocenciaOpen(false);
+        setIsInvestigacionOpen(true);
+      }, 300);
+    } else {
+      setIsScrolling(false);
+      if (isDocenciaOpen) {
+        closeAllDropdowns(() => setIsInvestigacionOpen(true));
+      } else {
+        setIsInvestigacionOpen(!isInvestigacionOpen);
+      }
+    }
+  };
+
+  const handleDocenciaClick = () => {
+    if (isTransitioning) return;
+
+    if (isSearchOpen) {
+      setIsSearchOpen(false);
+      setTimeout(() => {
+        setIsScrolling(false);
+        if (isInvestigacionOpen) setIsInvestigacionOpen(false);
+        setIsDocenciaOpen(true);
+      }, 300);
+    } else {
+      setIsScrolling(false);
+      if (isInvestigacionOpen) {
+        closeAllDropdowns(() => setIsDocenciaOpen(true));
+      } else {
+        setIsDocenciaOpen(!isDocenciaOpen);
+      }
+    }
+  };
+
+  const handleSearchClick = () => {
+    if (isTransitioning) return;
+
+    if (isInvestigacionOpen || isDocenciaOpen) {
+      closeAllDropdowns(() => setIsSearchOpen(true));
+    } else {
+      setIsSearchOpen(!isSearchOpen);
+    }
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      if (isInvestigacionOpen || isDocenciaOpen) {
+      if (isInvestigacionOpen || isDocenciaOpen || isSearchOpen) {
         closeAllDropdowns();
+        setIsSearchOpen(false);
       }
     };
 
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
-        closeAllDropdowns();
+        if (isInvestigacionOpen || isDocenciaOpen) {
+          closeAllDropdowns();
+        }
+        if (isSearchOpen) {
+          setIsSearchOpen(false);
+        }
       }
     };
 
@@ -35,26 +98,7 @@ const SubHeader = () => {
       window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isInvestigacionOpen, isDocenciaOpen]);
-
-  const handleInvestigacionClick = () => {
-    setIsScrolling(false);
-    if (isDocenciaOpen) setIsDocenciaOpen(false);
-    setIsInvestigacionOpen(!isInvestigacionOpen);
-  };
-
-  const handleDocenciaClick = () => {
-    setIsScrolling(false);
-    if (isInvestigacionOpen) setIsInvestigacionOpen(false);
-    setIsDocenciaOpen(!isDocenciaOpen);
-  };
-
-  const handleSearchClick = () => {
-    setIsSearchOpen(!isSearchOpen);
-    if (isInvestigacionOpen || isDocenciaOpen) {
-      closeAllDropdowns();
-    }
-  };
+  }, [isInvestigacionOpen, isDocenciaOpen, isSearchOpen]);
 
   return (
     <div className='container mx-auto px-2 sm:px-4 relative'>
