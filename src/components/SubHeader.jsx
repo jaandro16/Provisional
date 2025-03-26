@@ -129,16 +129,17 @@ const SubHeader = () => {
                   ${
                     isScrolling
                       ? 'transition-all duration-75'
-                      : 'transition-all duration-500'
+                      : 'transition-transform duration-300'
                   }
                   ease-in-out
                   md:hidden
                   ${
-                    isInvestigacionOpen
-                      ? 'max-h-221 opacity-100 pointer-events-auto'
-                      : 'max-h-0 opacity-0 pointer-events-none'
+                    isInvestigacionOpen // o isDocenciaOpen para el otro dropdown
+                      ? 'transform-none'
+                      : 'transform scale-y-0'
                   }
-                  overflow-hidden
+                  origin-top
+                  border-t border-gray-200
                 `}
                 style={{
                   top: menuRef.current
@@ -249,16 +250,17 @@ const SubHeader = () => {
                   ${
                     isScrolling
                       ? 'transition-all duration-75'
-                      : 'transition-all duration-500'
+                      : 'transition-transform duration-300'
                   }
                   ease-in-out
                   md:hidden
                   ${
-                    isDocenciaOpen
-                      ? 'max-h-221 opacity-100 pointer-events-auto'
-                      : 'max-h-0 opacity-0 pointer-events-none'
+                    isDocenciaOpen // o isDocenciaOpen para el otro dropdown
+                      ? 'transform-none'
+                      : 'transform scale-y-0'
                   }
-                  overflow-hidden
+                  origin-top
+                  border-t border-gray-200
                 `}
                 style={{
                   top: menuRef.current
