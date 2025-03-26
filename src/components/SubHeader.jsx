@@ -206,7 +206,7 @@ const SubHeader = () => {
                   border-t border-gray-200
                   md:rounded-b-[10px]
                   md:top-9
-                  md:left-1/2
+                  md:left-[50%]
                   md:-translate-x-[37%]
                 `}
                 style={{
