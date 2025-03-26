@@ -409,7 +409,7 @@ const SubHeader = () => {
                 </div>
               </div>
             </li>
-            <div className='h-6 w-[1px] bg-gray-300'></div>
+            <div className='h-6 w-[1px] bg-gray-300 z-51'></div>
             {isSearchOpen ? (
               <svg
                 xmlns='http://www.w3.org/2000/svg'
