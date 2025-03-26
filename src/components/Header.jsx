@@ -14,18 +14,32 @@ const Header = () => {
           </div>
           <div className='flex items-center space-x-6'>
             <ul className='flex items-center space-x-6 font-["Open_Sans"]'>
-              <li>
+              <li className='relative'>
                 <a
                   href='/'
-                  className='!text-white hover:!text-gray-300 text-lg'
+                  className='!text-white hover:!text-gray-300 text-lg relative group hidden md:block'
+                >
+                  <span>Inicio</span>
+                  <span className='absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full'></span>
+                </a>
+                <a
+                  href='/'
+                  className='!text-white hover:!text-gray-300 text-lg md:hidden'
                 >
                   Inicio
                 </a>
               </li>
-              <li>
+              <li className='relative'>
                 <a
                   href='/contact'
-                  className='!text-white hover:!text-gray-300 text-lg'
+                  className='!text-white hover:!text-gray-300 text-lg relative group hidden md:block'
+                >
+                  <span>Contacto</span>
+                  <span className='absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full'></span>
+                </a>
+                <a
+                  href='/contact'
+                  className='!text-white hover:!text-gray-300 text-lg md:hidden'
                 >
                   Contacto
                 </a>
