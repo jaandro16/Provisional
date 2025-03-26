@@ -49,13 +49,6 @@ const SubHeader = () => {
     setIsDocenciaOpen(!isDocenciaOpen);
   };
 
-  const handleSearchClick = () => {
-    setIsSearchOpen(!isSearchOpen);
-    if (isInvestigacionOpen || isDocenciaOpen) {
-      closeAllDropdowns();
-    }
-  };
-
   return (
     <div className='container mx-auto px-2 sm:px-4 relative'>
       <div
@@ -73,34 +66,20 @@ const SubHeader = () => {
           z-50
           ${
             isInvestigacionOpen || isDocenciaOpen
-              ? 'border-b border-gray-200 md:border-b-0'
+              ? 'border-b border-gray-200'
               : ''
           }
+          md:border-b-0
         `}
       >
         {/* Search overlay for mobile */}
         <div
-          className={`
-            absolute right-0 top-0 
-            h-full
-            transition-all duration-300 ease-in-out 
-            bg-white
-            flex items-center
-            overflow-hidden
-            md:rounded-[10px] 
-            z-50
-            ${isSearchOpen ? 'w-full opacity-100' : 'w-0 opacity-0'}
+          className={`absolute right-0 top-0 h-full transition-all duration-300 ease-in-out bg-white flex items-center
+            ${isSearchOpen ? 'w-full' : 'w-0 overflow-hidden'}
+            md:rounded-[10px] z-50
           `}
         >
-          <div
-            className={`
-            w-full 
-            flex items-center 
-            px-4
-            transition-opacity duration-200 ease-in-out
-            ${isSearchOpen ? 'opacity-100' : 'opacity-0'}
-          `}
-          >
+          <div className='w-full flex items-center px-4'>
             <input
               type='text'
               placeholder='¿Qué deseas buscar?'
@@ -143,9 +122,9 @@ const SubHeader = () => {
               {/* Dropdown menu for small screens */}
               <div
                 className={`
-                  fixed left-0 md:absolute
-                  w-screen md:w-[680px]
-                  bg-white md:bg-gray-100
+                  fixed left-0
+                  w-screen
+                  bg-white
                   shadow-lg
                   ${
                     isScrolling
@@ -153,24 +132,19 @@ const SubHeader = () => {
                       : 'transition-transform duration-300'
                   }
                   ease-in-out
+                  md:hidden
                   ${
-                    isInvestigacionOpen
+                    isInvestigacionOpen // o isDocenciaOpen para el otro dropdown
                       ? 'transform-none'
                       : 'transform scale-y-0'
                   }
                   origin-top
                   border-t border-gray-200
-                  md:rounded-b-[10px]
-                  md:top-9
-                  md:left-1/2
-                  md:-translate-x-[37%]
                 `}
                 style={{
-                  top:
-                    menuRef.current &&
-                    !window.matchMedia('(min-width: 768px)').matches
-                      ? `${menuRef.current.getBoundingClientRect().bottom}px`
-                      : undefined,
+                  top: menuRef.current
+                    ? `${menuRef.current.getBoundingClientRect().bottom}px`
+                    : '0',
                 }}
               >
                 <div className='py-2'>
@@ -269,9 +243,9 @@ const SubHeader = () => {
 
               <div
                 className={`
-                  fixed left-0 md:absolute
-                  w-screen md:w-[680px]
-                  bg-white md:bg-gray-100
+                  fixed left-0
+                  w-screen
+                  bg-white
                   shadow-lg
                   ${
                     isScrolling
@@ -279,20 +253,19 @@ const SubHeader = () => {
                       : 'transition-transform duration-300'
                   }
                   ease-in-out
-                  ${isDocenciaOpen ? 'transform-none' : 'transform scale-y-0'}
+                  md:hidden
+                  ${
+                    isDocenciaOpen // o isDocenciaOpen para el otro dropdown
+                      ? 'transform-none'
+                      : 'transform scale-y-0'
+                  }
                   origin-top
                   border-t border-gray-200
-                  md:rounded-b-[10px]
-                  md:top-9
-                  md:left-[51%]
-                  md:-translate-x-[61%]
                 `}
                 style={{
-                  top:
-                    menuRef.current &&
-                    !window.matchMedia('(min-width: 768px)').matches
-                      ? `${menuRef.current.getBoundingClientRect().bottom}px`
-                      : undefined,
+                  top: menuRef.current
+                    ? `${menuRef.current.getBoundingClientRect().bottom}px`
+                    : '0',
                 }}
               >
                 <div className='py-2'>
@@ -373,7 +346,7 @@ const SubHeader = () => {
                 fill='none'
                 viewBox='0 0 24 24'
                 stroke='currentColor'
-                onClick={handleSearchClick}
+                onClick={() => setIsSearchOpen(false)}
               >
                 <path
                   strokeLinecap='round'
@@ -389,7 +362,7 @@ const SubHeader = () => {
                 fill='none'
                 viewBox='0 0 24 24'
                 stroke='currentColor'
-                onClick={handleSearchClick}
+                onClick={() => setIsSearchOpen(true)}
               >
                 <path
                   strokeLinecap='round'
