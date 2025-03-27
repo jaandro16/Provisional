@@ -6,13 +6,41 @@ const Noticias = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+
+    const handleScroll = () => {
+      if (titleRef.current) {
+        const rect = titleRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const triggerPoint = isMobile ? windowHeight * 0.4 : windowHeight * 0.5;
+
+        if (rect.top <= triggerPoint && rect.bottom >= triggerPoint) {
+          const progress = 1 - rect.top / triggerPoint;
+          setScrollProgress(Math.min(Math.max(progress, 0), 1));
+        } else {
+          setScrollProgress(0);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial calculation
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
       },
       {
         threshold: [0, 0.2, 0.4, 0.6, 0.8, 1],
-        rootMargin: '-10% 0px -10% 0px',
+        rootMargin: isMobile ? '-25% 0px -15% 0px' : '-25% 0px -15% 0px',
       }
     );
 
@@ -60,10 +88,10 @@ const Noticias = () => {
               Noticias
             </h2>
             <div
-              className='absolute bottom-[2px] left-0 top-10 h-[2px] bg-[#0063A6] transition-all duration-700 ease-out'
+              className='absolute bottom-[2px] left-0 h-[2px] top-10 bg-[#0063A6] transition-all duration-900 ease-out'
               style={{
                 width: `${scrollProgress * 100}%`,
-                maxWidth: '48%',
+                maxWidth: window.innerWidth >= 768 ? '48%' : '35%',
                 opacity: scrollProgress,
               }}
             ></div>
