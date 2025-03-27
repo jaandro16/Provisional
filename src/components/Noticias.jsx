@@ -4,7 +4,7 @@ const Noticias = () => {
   return (
     <div className='relative'>
       <img
-        src='/mentoria.jpg'
+        src='mentoria.jpg'
         alt='Background'
         className='absolute right-0 md:right-0 left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0 -top-13 h-[250px] sm:h-[350px] md:h-[475px] lg:h-[500px] z-10'
       />

@@ -34,7 +34,7 @@ const Presentacion = () => {
         </div>
         <div className='md:flex-1 flex justify-center'>
           <img
-            src='/src/assets/EscUpmIng-removebg-preview.png'
+            src='EscUpmIng-removebg-preview.png'
             alt='ETSII UPM'
             className='w-[180px] h-[145px] md:w-[215px] md:h-[180px] object-cover'
           />
