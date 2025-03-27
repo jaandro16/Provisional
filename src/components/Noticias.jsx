@@ -10,7 +10,10 @@ const Noticias = () => {
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
       },
-      { threshold: 0.1 }
+      {
+        threshold: [0, 0.2, 0.4, 0.6, 0.8, 1],
+        rootMargin: '-10% 0px -10% 0px',
+      }
     );
 
     const titleElement = titleRef.current;
@@ -21,16 +24,18 @@ const Noticias = () => {
     const handleScroll = () => {
       if (titleElement && isVisible) {
         const rect = titleElement.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const progress = Math.min(
-          Math.max((windowHeight - rect.top) / windowHeight, 0),
-          1
-        );
-        setScrollProgress(progress);
+        const viewportHeight = window.innerHeight;
+        const elementCenter = rect.top + rect.height / 2;
+        const distanceFromCenter = Math.abs(viewportHeight / 2 - elementCenter);
+        const maxDistance = viewportHeight / 2;
+
+        const progress = 1 - distanceFromCenter / maxDistance;
+        setScrollProgress(Math.min(Math.max(progress, 0), 1));
       }
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial calculation
 
     return () => {
       if (titleElement) {
@@ -50,13 +55,17 @@ const Noticias = () => {
 
       <div className='w-full bg-[#E6F0F7] h-[600px] md:h-[350px] mt-40 relative'>
         <div className='absolute left-8 md:left-14 lg:left-40 top-[65%] md:top-1/2 -translate-y-1/2 max-w-full md:max-w-[300px] lg:max-w-[400px] flex flex-col px-4 md:px-0 md:pr-16 lg:pr-20'>
-          <div ref={titleRef} className='relative'>
+          <div ref={titleRef} className='relative inline-block'>
             <h2 className="font-['Work_Sans'] text-black font-semibold text-3xl md:text-4xl mb-4 text-left">
               Noticias
             </h2>
             <div
-              className='absolute bottom-0 left-0 h-0.5 top-10 bg-[#0063A6] transition-all duration-300'
-              style={{ width: `${scrollProgress * 100}%` }}
+              className='absolute bottom-[2px] left-0 top-10 h-[2px] bg-[#0063A6] transition-all duration-700 ease-out'
+              style={{
+                width: `${scrollProgress * 100}%`,
+                maxWidth: '48%',
+                opacity: scrollProgress,
+              }}
             ></div>
           </div>
           <p className="font-['Open_Sans'] text-black text-lg md:text-xl mb-8 text-left whitespace-normal">
