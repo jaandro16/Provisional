@@ -1,19 +1,64 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const Noticias = () => {
+  const titleRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    const titleElement = titleRef.current;
+    if (titleElement) {
+      observer.observe(titleElement);
+    }
+
+    const handleScroll = () => {
+      if (titleElement && isVisible) {
+        const rect = titleElement.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const progress = Math.min(
+          Math.max((windowHeight - rect.top) / windowHeight, 0),
+          1
+        );
+        setScrollProgress(progress);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      if (titleElement) {
+        observer.unobserve(titleElement);
+      }
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isVisible]);
+
   return (
     <div className='relative'>
       <img
-        src='mentoria.jpg'
+        src='/mentoria.jpg'
         alt='Background'
         className='absolute right-0 md:right-0 left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0 -top-13 h-[250px] sm:h-[350px] md:h-[475px] lg:h-[500px] z-10'
       />
 
       <div className='w-full bg-[#E6F0F7] h-[600px] md:h-[350px] mt-40 relative'>
         <div className='absolute left-8 md:left-14 lg:left-40 top-[65%] md:top-1/2 -translate-y-1/2 max-w-full md:max-w-[300px] lg:max-w-[400px] flex flex-col px-4 md:px-0 md:pr-16 lg:pr-20'>
-          <h2 className="font-['Work_Sans'] text-black font-semibold text-3xl md:text-4xl mb-4 text-left">
-            Noticias
-          </h2>
+          <div ref={titleRef} className='relative'>
+            <h2 className="font-['Work_Sans'] text-black font-semibold text-3xl md:text-4xl mb-4 text-left">
+              Noticias
+            </h2>
+            <div
+              className='absolute bottom-0 left-0 h-0.5 top-10 bg-[#0063A6] transition-all duration-300'
+              style={{ width: `${scrollProgress * 100}%` }}
+            ></div>
+          </div>
           <p className="font-['Open_Sans'] text-black text-lg md:text-xl mb-8 text-left whitespace-normal">
             ¿Te gustaría conocer todas las noticias acerca de la Unidad Docente
             de Informática Industrial?
