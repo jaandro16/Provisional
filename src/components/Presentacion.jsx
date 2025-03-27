@@ -4,7 +4,7 @@ const Presentacion = () => {
   return (
     <div className='container mx-auto px-4 py-12 mt-20'>
       <div className='flex flex-col md:flex-row items-center gap-8'>
-        <div className='flex-1 ml-3 mr-3 md:mr-0'>
+        <div className='flex-1 ml-3 mr-3 md:ml-8 lg:ml-3 md:mr-0'>
           <div className='text-left text-black'>
             <p className="font-['Open_Sans'] text-[16px] md:text-[22px] mb-8">
               La{' '}
@@ -34,7 +34,7 @@ const Presentacion = () => {
         </div>
         <div className='md:flex-1 flex justify-center'>
           <img
-            src='EscUpmIng-removebg-preview.png'
+            src='/src/assets/EscUpmIng-removebg-preview.png'
             alt='ETSII UPM'
             className='w-[180px] h-[145px] md:w-[215px] md:h-[180px] object-cover'
           />
