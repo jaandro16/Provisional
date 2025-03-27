@@ -1,78 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
 const Noticias = () => {
-  const titleRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const isMobile = window.innerWidth < 768;
-
-    const handleScroll = () => {
-      if (titleRef.current) {
-        const rect = titleRef.current.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const triggerPoint = isMobile ? windowHeight * 0.4 : windowHeight * 0.5;
-
-        if (rect.top <= triggerPoint && rect.bottom >= triggerPoint) {
-          const progress = 1 - rect.top / triggerPoint;
-          setScrollProgress(Math.min(Math.max(progress, 0), 1));
-        } else {
-          setScrollProgress(0);
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial calculation
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    const isMobile = window.innerWidth < 768;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      {
-        threshold: [0, 0.2, 0.4, 0.6, 0.8, 1],
-        rootMargin: isMobile ? '-25% 0px -15% 0px' : '-25% 0px -15% 0px',
-      }
-    );
-
-    const titleElement = titleRef.current;
-    if (titleElement) {
-      observer.observe(titleElement);
-    }
-
-    const handleScroll = () => {
-      if (titleElement && isVisible) {
-        const rect = titleElement.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        const elementCenter = rect.top + rect.height / 2;
-        const distanceFromCenter = Math.abs(viewportHeight / 2 - elementCenter);
-        const maxDistance = viewportHeight / 2;
-
-        const progress = 1 - distanceFromCenter / maxDistance;
-        setScrollProgress(Math.min(Math.max(progress, 0), 1));
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial calculation
-
-    return () => {
-      if (titleElement) {
-        observer.unobserve(titleElement);
-      }
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [isVisible]);
-
   return (
     <div className='relative'>
       <img
@@ -83,19 +11,9 @@ const Noticias = () => {
 
       <div className='w-full bg-[#E6F0F7] h-[600px] md:h-[350px] mt-40 relative'>
         <div className='absolute left-8 md:left-14 lg:left-40 top-[65%] md:top-1/2 -translate-y-1/2 max-w-full md:max-w-[300px] lg:max-w-[400px] flex flex-col px-4 md:px-0 md:pr-16 lg:pr-20'>
-          <div ref={titleRef} className='relative inline-block'>
-            <h2 className="font-['Work_Sans'] text-black font-semibold text-3xl md:text-4xl mb-4 text-left">
-              Noticias
-            </h2>
-            <div
-              className='absolute bottom-[2px] left-0 h-[2px] top-10 bg-[#0063A6] transition-all duration-900 ease-out'
-              style={{
-                width: `${scrollProgress * 100}%`,
-                maxWidth: window.innerWidth >= 768 ? '48%' : '35%',
-                opacity: scrollProgress,
-              }}
-            ></div>
-          </div>
+          <h2 className="font-['Work_Sans'] text-black font-semibold text-3xl md:text-4xl mb-4 text-left">
+            Noticias
+          </h2>
           <p className="font-['Open_Sans'] text-black text-lg md:text-xl mb-8 text-left whitespace-normal">
             ¿Te gustaría conocer todas las noticias acerca de la Unidad Docente
             de Informática Industrial?
