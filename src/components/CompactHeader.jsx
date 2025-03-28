@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-const CompactHeader = ({ isVisible }) => {
+const CompactHeader = ({ isVisible, onLoginClick }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isInvestigacionOpen, setIsInvestigacionOpen] = useState(false);
   const [isDocenciaOpen, setIsDocenciaOpen] = useState(false);
@@ -108,7 +108,7 @@ const CompactHeader = ({ isVisible }) => {
             <div className='flex items-center'>
               <a href='/'>
                 <img
-                  src='/logo.png'
+                  src='/src/assets/logo.png'
                   alt='Logo'
                   className='h-16 cursor-pointer'
                 />
@@ -378,20 +378,22 @@ const CompactHeader = ({ isVisible }) => {
                   </a>
                 </li>
                 <div className='h-6 w-[1px] bg-gray-300'></div>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  className='h-5 w-5 cursor-pointer hover:!text-gray-300'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  stroke='currentColor'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'
-                  />
-                </svg>
+                <button onClick={onLoginClick} className='hover:opacity-80'>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='h-5 w-5 cursor-pointer hover:!text-gray-300'
+                    fill='none'
+                    viewBox='0 0 24 24'
+                    stroke='currentColor'
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth={2}
+                      d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'
+                    />
+                  </svg>
+                </button>
               </ul>
             </div>
           </nav>
@@ -405,7 +407,7 @@ const CompactHeader = ({ isVisible }) => {
             <div className='flex items-center px-2 mt-5'>
               <a href='/'>
                 <img
-                  src='/logo.png'
+                  src='/src/assets/logo.png'
                   alt='Logo'
                   className='h-12 cursor-pointer'
                 />
@@ -747,20 +749,22 @@ const CompactHeader = ({ isVisible }) => {
                       </svg>
                     </div>
                     {/* User Icon */}
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      className='h-5 w-5 text-white mr-4'
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      stroke='currentColor'
-                    >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeWidth={2}
-                        d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'
-                      />
-                    </svg>
+                    <button onClick={onLoginClick} className='hover:opacity-80'>
+                      <svg
+                        xmlns='http://www.w3.org/2000/svg'
+                        className='h-5 w-5 cursor-pointer hover:!text-gray-300 mr-4'
+                        fill='none'
+                        viewBox='0 0 24 24'
+                        stroke='currentColor'
+                      >
+                        <path
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                          strokeWidth={2}
+                          d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'
+                        />
+                      </svg>
+                    </button>
                   </div>
                 </li>
               </ul>

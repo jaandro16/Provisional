@@ -1,24 +1,24 @@
 import { useState, useEffect } from 'react';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import SubHeader from './components/SubHeader';
 import CompactHeader from './components/CompactHeader';
-import Hero from './components/Hero';
-import Presentacion from './components/Presentacion';
-import Noticias from './components/Noticias';
-import Investigacion from './components/Investigacion';
-import ImageOverlay from './components/ImagenOverlay';
 import Footer from './components/Footer';
+import Home from './pages/Home';
+import LoginModal from './components/LoginModal';
+import Hero from './components/Hero';
+import './App.css';
 
 function App() {
   const [showCompactHeader, setShowCompactHeader] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      const showThreshold = 175; // Punto donde aparece
-      const hideThreshold = 200; // Punto donde desaparece (más arriba)
+      const showThreshold = 175;
+      const hideThreshold = 200;
 
       if (currentScrollY > showThreshold) {
         setShowCompactHeader(true);
@@ -37,16 +37,26 @@ function App() {
   }, [lastScrollY]);
 
   return (
-    <div className='app'>
-      <Header />
-      <SubHeader />
-      <CompactHeader isVisible={showCompactHeader} />
-      <Hero />
-      <Presentacion />
-      <Noticias />
-      <Investigacion />
-      <ImageOverlay />
-      <Footer />
+    <div className='flex flex-col min-h-screen relative'>
+      <div className='z-40 relative'>
+        <Header onLoginClick={() => setIsLoginModalOpen(true)} />
+        <SubHeader />
+        <CompactHeader
+          isVisible={showCompactHeader}
+          onLoginClick={() => setIsLoginModalOpen(true)}
+        />
+        <Hero />
+      </div>
+      <main className='flex-grow relative'>
+        <Routes>
+          <Route path='/' element={<Home />} />
+        </Routes>
+      </main>
+      <Footer className='relative z-40' />
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+      />
     </div>
   );
 }

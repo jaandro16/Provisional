@@ -1,4 +1,4 @@
-const Header = () => {
+const Header = ({ onLoginClick }) => {
   return (
     <header className='w-full bg-[#0063A6] text-white h-auto md:h-[159px]'>
       <div className='container mx-auto px-4 py-3 h-full'>
@@ -6,7 +6,7 @@ const Header = () => {
           <div className='flex items-center justify-center w-full md:w-auto'>
             <a href='/'>
               <img
-                src='logo.png'
+                src='/src/assets/logo.png'
                 alt='Logo'
                 className='h-22 md:h-22 cursor-pointer'
               />
@@ -46,20 +46,22 @@ const Header = () => {
               </li>
             </ul>
             <div className='h-6 w-[1px] bg-gray-300'></div>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              className='h-5 w-5 cursor-pointer hover:!text-gray-300'
-              fill='none'
-              viewBox='0 0 24 24'
-              stroke='currentColor'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2}
-                d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'
-              />
-            </svg>
+            <button onClick={onLoginClick} className='hover:opacity-80'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-5 w-5 cursor-pointer hover:!text-gray-300'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'
+                />
+              </svg>
+            </button>
           </div>
         </nav>
       </div>

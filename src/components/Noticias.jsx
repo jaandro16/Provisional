@@ -4,19 +4,19 @@ const Noticias = () => {
   return (
     <div className='relative'>
       <img
-        src='mentoria4.png'
+        src='/mentoria4.png'
         alt='Background'
         className='absolute right-0 md:right-0 left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0 -top-18 h-[250px] sm:h-[350px] md:h-[475px] lg:h-[500px] z-10 max-[412px]:block hidden'
       />
       <img
-        src='mentoria3.png'
+        src='/mentoria3.png'
         alt='Background'
-        className='absolute right-0 md:right-0 left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0 -top-18 h-[250px] sm:h-[350px] md:h-[475px] lg:h-[500px] z-10 min-[413px]:block max-[910px]:block hidden'
+        className='absolute right-0 md:right-0 left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0 top-20 h-[250px] sm:h-[350px] md:h-[475px] lg:h-[500px] z-10 min-[413px]:block max-[910px]:block hidden'
       />
       <img
-        src='mentoria2.png'
+        src='/mentoria2.png'
         alt='Background'
-        className='absolute right-0 md:right-0 left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0 -top-18 h-[250px] sm:h-[350px] md:h-[475px] lg:h-[500px] z-10 min-[913px]:block hidden'
+        className='absolute right-0 md:right-0 left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0 top-20 h-[250px] sm:h-[350px] md:h-[475px] lg:h-[500px] z-10 min-[913px]:block hidden'
       />
 
       <div className='w-full bg-[#E6F0F7] h-[500px] md:h-[350px] mt-40 relative'>

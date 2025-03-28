@@ -2,7 +2,7 @@ import React from 'react';
 
 const ImageOverlay = () => {
   return (
-    <div className='w-full relative mt-40 md:mt-80'>
+    <div className='w-full relative mt-40 md:mt-60'>
       <div className='absolute inset-0 bg-[#063757] opacity-80 z-10'></div>
       <img
         src='/imagenrrss.png'
