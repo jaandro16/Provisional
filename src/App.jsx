@@ -7,6 +7,8 @@ import Hero from './components/Hero';
 import Presentacion from './components/Presentacion';
 import Noticias from './components/Noticias';
 import Investigacion from './components/Investigacion';
+import ImageOverlay from './components/ImagenOverlay';
+import Footer from './components/Footer';
 
 function App() {
   const [showCompactHeader, setShowCompactHeader] = useState(false);
@@ -43,6 +45,8 @@ function App() {
       <Presentacion />
       <Noticias />
       <Investigacion />
+      <ImageOverlay />
+      <Footer />
       <main>
         <h1 className='text-3xl text-black font-bold underline mt-200'>.</h1>
       </main>
