@@ -47,9 +47,6 @@ function App() {
       <Investigacion />
       <ImageOverlay />
       <Footer />
-      <main>
-        <h1 className='text-3xl text-black font-bold underline mt-200'>.</h1>
-      </main>
     </div>
   );
 }
