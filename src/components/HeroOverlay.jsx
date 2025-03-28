@@ -26,7 +26,7 @@ const HeroOverlay = () => {
         </div>
         <div className='flex justify-center md:justify-end md:mr-6 xl:mr-12 2xl:mr-20 mt-10 md:mt-0'>
           <img
-            src='/src/assets/calidadAumentada.jpg'
+            src='/calidadAumentada.jpg'
             alt='Overlay'
             className='w-auto h-[190px] md:h-[450px] z-10 md:mt-27'
           />

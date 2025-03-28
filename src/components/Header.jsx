@@ -6,7 +6,7 @@ const Header = ({ onLoginClick }) => {
           <div className='flex items-center justify-center w-full md:w-auto'>
             <a href='/'>
               <img
-                src='/src/assets/logo.png'
+                src='/logo.png'
                 alt='Logo'
                 className='h-22 md:h-22 cursor-pointer'
               />

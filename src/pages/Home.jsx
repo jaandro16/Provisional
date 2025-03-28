@@ -6,7 +6,6 @@ import ImageOverlay from '../components/ImageOverlay';
 function Home() {
   return (
     <div className='flex flex-col'>
-      {/* <Hero /> */}
       <Presentacion />
       <Noticias />
       <Investigacion />
