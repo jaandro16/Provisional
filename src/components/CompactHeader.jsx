@@ -5,7 +5,8 @@ const CompactHeader = ({ isVisible }) => {
   const [isInvestigacionOpen, setIsInvestigacionOpen] = useState(false);
   const [isDocenciaOpen, setIsDocenciaOpen] = useState(false);
   const buttonRef = useRef(null);
-  const menuRef = useRef(null);
+  const mobileMenuRef = useRef(null);
+  const mobileContainerRef = useRef(null);
 
   const handleInvestigacionClick = () => {
     setIsDocenciaOpen(false);
@@ -26,26 +27,37 @@ const CompactHeader = ({ isVisible }) => {
     }
   }, [isVisible]);
 
-  // Modificar el useEffect para el clickOutside
+  // Agregar useEffect para manejar clicks fuera del menú
   useEffect(() => {
     const handleClickOutside = (event) => {
-      const isClickInside = menuRef.current?.contains(event.target);
-      const isInvestigacionButton = event.target.closest(
-        '[data-dropdown="investigacion"]'
-      );
-      const isDocenciaButton = event.target.closest(
-        '[data-dropdown="docencia"]'
+      const isClickedOutside = !(
+        mobileMenuRef.current?.contains(event.target) ||
+        buttonRef.current?.contains(event.target)
       );
 
-      if (!isClickInside && !isInvestigacionButton && !isDocenciaButton) {
+      if (isMenuOpen && isClickedOutside) {
+        setMenuOpen(false);
+        setIsInvestigacionOpen(false);
+        setIsDocenciaOpen(false);
+      }
+    };
+
+    const handleScroll = () => {
+      if (isMenuOpen) {
+        setMenuOpen(false);
         setIsInvestigacionOpen(false);
         setIsDocenciaOpen(false);
       }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isMenuOpen]);
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
@@ -62,7 +74,7 @@ const CompactHeader = ({ isVisible }) => {
             <div className='flex items-center'>
               <a href='/'>
                 <img
-                  src='logo.png'
+                  src='/src/assets/logo.png'
                   alt='Logo'
                   className='h-16 cursor-pointer'
                 />
@@ -351,13 +363,13 @@ const CompactHeader = ({ isVisible }) => {
       </div>
 
       {/* Mobile Header */}
-      <div className='block md:hidden h-[60px]' ref={menuRef}>
+      <div className='block md:hidden h-[60px]' ref={mobileContainerRef}>
         <div className='container mx-auto px-4 h-full'>
           <nav className='flex items-center justify-between h-full'>
             <div className='flex items-center px-2 mt-5'>
               <a href='/'>
                 <img
-                  src='logo.png'
+                  src='/src/assets/logo.png'
                   alt='Logo'
                   className='h-12 cursor-pointer'
                 />
@@ -390,6 +402,7 @@ const CompactHeader = ({ isVisible }) => {
 
         {/* Mobile Menu Dropdown */}
         <div
+          ref={mobileMenuRef}
           className={`absolute top-[60px] left-0 w-full transition-all duration-300 ease-in-out ${
             isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
           }`}
