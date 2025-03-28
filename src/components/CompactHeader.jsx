@@ -7,6 +7,8 @@ const CompactHeader = ({ isVisible }) => {
   const buttonRef = useRef(null);
   const mobileMenuRef = useRef(null);
   const mobileContainerRef = useRef(null);
+  const desktopInvestigacionRef = useRef(null);
+  const desktopDocenciaRef = useRef(null);
 
   const handleInvestigacionClick = () => {
     setIsDocenciaOpen(false);
@@ -59,6 +61,38 @@ const CompactHeader = ({ isVisible }) => {
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    const handleClickOutsideDesktop = (event) => {
+      if ((isInvestigacionOpen || isDocenciaOpen) && window.innerWidth >= 768) {
+        const isClickedInsideInvestigacion =
+          desktopInvestigacionRef.current?.contains(event.target);
+        const isClickedInsideDocencia = desktopDocenciaRef.current?.contains(
+          event.target
+        );
+
+        if (!isClickedInsideInvestigacion && !isClickedInsideDocencia) {
+          setIsInvestigacionOpen(false);
+          setIsDocenciaOpen(false);
+        }
+      }
+    };
+
+    const handleScrollDesktop = () => {
+      if ((isInvestigacionOpen || isDocenciaOpen) && window.innerWidth >= 768) {
+        setIsInvestigacionOpen(false);
+        setIsDocenciaOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutsideDesktop);
+    window.addEventListener('scroll', handleScrollDesktop);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideDesktop);
+      window.removeEventListener('scroll', handleScrollDesktop);
+    };
+  }, [isInvestigacionOpen, isDocenciaOpen]);
+
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   return (
@@ -74,7 +108,7 @@ const CompactHeader = ({ isVisible }) => {
             <div className='flex items-center'>
               <a href='/'>
                 <img
-                  src='/src/assets/logo.png'
+                  src='/logo.png'
                   alt='Logo'
                   className='h-16 cursor-pointer'
                 />
@@ -127,6 +161,7 @@ const CompactHeader = ({ isVisible }) => {
 
                   {/* Dropdown para pantallas grandes */}
                   <div
+                    ref={desktopInvestigacionRef}
                     className={`
                       absolute top-full left-0
                       bg-[#0063A6]
@@ -242,6 +277,7 @@ const CompactHeader = ({ isVisible }) => {
 
                   {/* Dropdown para pantallas grandes */}
                   <div
+                    ref={desktopDocenciaRef}
                     className={`
                       absolute top-full left-0
                       bg-[#0063A6]
@@ -369,7 +405,7 @@ const CompactHeader = ({ isVisible }) => {
             <div className='flex items-center px-2 mt-5'>
               <a href='/'>
                 <img
-                  src='/src/assets/logo.png'
+                  src='/logo.png'
                   alt='Logo'
                   className='h-12 cursor-pointer'
                 />
