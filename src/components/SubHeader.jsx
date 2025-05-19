@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 const SubHeader = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -156,9 +157,9 @@ const SubHeader = () => {
         <div className='w-full h-full flex items-center justify-center px-2 sm:px-4'>
           <ul className='flex items-center space-x-6 xs:space-x-3 sm:space-x-4 md:space-x-15 font-["Open_Sans"] text-sm sm:text-base'>
             <li>
-              <a href='/equipo' className='text-gray-700 hover:text-gray-900'>
+              <Link to="/equipo" className="text-gray-700 hover:text-gray-900">
                 Equipo
-              </a>
+              </Link>
             </li>
             <li className='flex flex-col relative'>
               <div
