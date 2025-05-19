@@ -3,31 +3,63 @@ import { useState } from "react"
 const profesores = [
   {
     id: 1,
-    name: "María López",
-    position: "Profesora de Matemáticas",
-    asignatura: "Álgebra y Cálculo",
-    image: "/profesores/maria_lopez.jpg",
+    name: "Ángel García Beltrán",
+    position: "Profesor Titular",
+    image: "/profesores/Angel_Garcia_Beltran.jpg",
   },
   {
     id: 2,
-    name: "Carlos Ruiz",
-    position: "Profesor de Física",
-    asignatura: "Mecánica y Termodinámica",
-    image: "/profesores/carlos_ruiz.jpg",
+    name: "Javier Rodriguez Vidal",
+    position: "Profesor permanente laboral",
+    image: "/profesores/Javier_Rodriguez_Vidal.jpg",
   },
   {
     id: 3,
-    name: "Laura Martínez",
-    position: "Profesora de Programación",
-    asignatura: "Java, Web y Base de Datos",
-    image: "/profesores/laura_martinez.jpg",
+    name: "Ascensión López Vargas",
+    position: "Profesor Ayudante Doctor",
+    image: "/profesores/Ascension_Lopez_Vargas.jpg",
   },
   {
     id: 4,
-    name: "Javier Gómez",
-    position: "Profesor de Historia",
-    asignatura: "Historia Contemporánea",
-    image: "/profesores/javier_gomez.jpg",
+    name: "Pablo Vigara",
+    position: "Profesor Asociado",
+    image: "/profesores/Pablo_Vigara.jpg",
+  },
+  {
+    id: 5,
+    name: "Julio Antonio Martín Erro",
+    position: "PTGAS",
+    image: "/profesores/Julio_Antonio_Martin_Erro.jpg",
+  },
+  {
+    id: 6,
+    name: "Laura de León Torres",
+    position: "Colaborador Externo",
+    image: "/profesores/Laura_de_Leon_Torres.jpg",
+  },
+  {
+    id: 7,
+    name: "Fernando Javier García-Mascarque Santillana",
+    position: "Colaborador Externo",
+    image: "/profesores/Fernando_Javier_Garcia_Mascarque_Santillana.jpg",
+  },
+  {
+    id: 8,
+    name: "Alexis Paul Cazorla Pasiche",
+    position: "Colaborador Externo",
+    image: "/profesores/Alexis_Paul_Cazorla_Pasiche.jpg",
+  },
+  {
+    id: 9,
+    name: "Iván Rodrigo González",
+    position: "Colaborador Externo",
+    image: "/profesores/Ivan_Rodrigo_Gonzalez.jpg",
+  },
+  {
+    id: 10,
+    name: "Raúl Martín Millán",
+    position: "Colaborador Externo",
+    image: "/profesores/Raul_Martin_Millan.jpg",
   },
 ]
 
@@ -49,7 +81,7 @@ export default function EquipoPage() {
         <input
           type="text"
           placeholder="Buscar profesor por nombre"
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#176B87]"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#176B87] text-black"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
