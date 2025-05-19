@@ -9,6 +9,7 @@ import LoginModal from './components/LoginModal';
 import Hero from './components/Hero';
 import './App.css';
 import Contacto from './pages/Contacto';
+import EquipoPage from './components/EquipoPage';
 
 function App() {
   const [showCompactHeader, setShowCompactHeader] = useState(false);
@@ -52,6 +53,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/contacto' element={<Contacto />} />
+          <Route path='/equipo' element={<EquipoPage />} />
         </Routes>
       </main>
       <Footer className='relative z-40' />
