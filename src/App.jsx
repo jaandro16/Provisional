@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import LoginModal from './components/LoginModal';
 import Hero from './components/Hero';
 import './App.css';
+import Contacto from './pages/Contacto';
 
 function App() {
   const [showCompactHeader, setShowCompactHeader] = useState(false);
@@ -50,6 +51,7 @@ function App() {
       <main className='flex-grow relative'>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/contacto' element={<Contacto />} />
         </Routes>
       </main>
       <Footer className='relative z-40' />

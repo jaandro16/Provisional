@@ -31,14 +31,14 @@ const Header = ({ onLoginClick }) => {
               </li>
               <li className='relative'>
                 <a
-                  href='/contact'
+                  href='/contacto'
                   className='!text-white hover:!text-gray-300 text-lg relative group hidden md:block'
                 >
                   <span>Contacto</span>
                   <span className='absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full'></span>
                 </a>
                 <a
-                  href='/contact'
+                  href='/contacto'
                   className='!text-white hover:!text-gray-300 text-lg md:hidden'
                 >
                   Contacto
