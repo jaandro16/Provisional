@@ -527,7 +527,7 @@ const CompactHeader = ({ isVisible, onLoginClick }) => {
                     <ul className='flex flex-col space-y-2 pl-8'>
                       <li>
                         <a
-                          href='proyectos'
+                          href='/proyectos'
                           className='text-white hover:text-gray-300 text-base block py-1 ml-4 flex items-center'
                         >
                           <svg
@@ -694,7 +694,7 @@ const CompactHeader = ({ isVisible, onLoginClick }) => {
                 </li>
                 <li className='py-4'>
                   <a
-                    href='/'
+                    href='/contacto'
                     className='flex items-center justify-between text-white hover:text-gray-300'
                   >
                     <span className='text-lg ml-4'>Contacto</span>
