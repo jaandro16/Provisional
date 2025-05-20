@@ -40,11 +40,11 @@ const Footer = () => {
     <footer className='w-full bg-blue-800 py-12 text-white'>
       <div className='max-w-5xl mx-auto flex flex-col md:flex-row justify-between px-4'>
         <div className='md:w-1/2 mb-6 md:mb-0 flex items-center justify-center'>
-          <div id='map' className='h-64 w-full md:h-72 rounded-lg shadow-lg'></div>
+          <div id='map' className='h-84 w-full md:h-102 rounded-lg shadow-lg'></div>
         </div>
 
         <div className='md:w-1/2 flex flex-col items-center md:items-end gap-6'>
-          <img src='/LogoETSII-blanco.png' alt='Logo UDII' className='h-20 mb-2' />
+          <img src='/public/LogoETSII-blanco.png' alt='Logo UDII' className='h-20 mb-2' />
           <div className='text-right'>
             <div className='font-bold'>Dirección</div>
             <div>Escuela Técnica Superior de Ingenieros Industriales,</div>
