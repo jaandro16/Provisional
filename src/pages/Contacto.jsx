@@ -70,7 +70,7 @@ const Contacto = () => {
 
   return (
     <div className='relative'>
-      <div className='w-full bg-[#F7F0E6] py-16 mt-40 relative min-h-[500px] md:min-h-[400px]'>
+      <div className='w-full bg-white py-16 mt-40 relative min-h-[500px] md:min-h-[400px]'>
         <div className='container mx-auto px-4 md:px-8 flex flex-col md:flex-row'>
           {/* Sección de información */}
           <div className='md:w-1/2 lg:w-2/5 flex flex-col justify-center mb-10 md:mb-0'>
@@ -100,7 +100,7 @@ const Contacto = () => {
                 </svg>
                 <div>
                   <p className='font-semibold'>Email:</p>
-                  <p>departamento@ejemplo.com</p>
+                  <p>secretaria.industriales@upm.es</p>
                 </div>
               </div>
               <div className='flex items-start'>
@@ -120,7 +120,7 @@ const Contacto = () => {
                 </svg>
                 <div>
                   <p className='font-semibold'>Teléfono:</p>
-                  <p>+123 456 7890</p>
+                  <p>+34 910 67 67 34</p>
                 </div>
               </div>
               <div className='flex items-start'>
@@ -146,7 +146,8 @@ const Contacto = () => {
                 </svg>
                 <div>
                   <p className='font-semibold'>Dirección:</p>
-                  <p>Calle Principal #123, Ciudad, País</p>
+                  <p>Escuela Técnica Superior de Ingenieros Industriales,</p>
+                  <p>JoséGutiérrez Abascal 2, 28006 Madrid</p>
                 </div>
               </div>
             </div>
@@ -196,62 +197,45 @@ const Contacto = () => {
                   )}
 
                   <div className='mb-4'>
-                    <label
-                      htmlFor='nombre'
-                      className='block text-gray-700 mb-2'
-                    >
-                      Nombre *
-                    </label>
                     <input
                       type='text'
                       id='nombre'
                       value={nombre}
                       onChange={(e) => setNombre(e.target.value)}
-                      className='w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#A66300]'
+                      placeholder='Nombre *'
+                      className='w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#A66300] bg-gray-100'
                     />
                   </div>
 
                   <div className='mb-4'>
-                    <label htmlFor='email' className='block text-gray-700 mb-2'>
-                      Email *
-                    </label>
                     <input
                       type='email'
                       id='email'
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className='w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#A66300]'
+                      placeholder='Email *'
+                      className='w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#A66300] bg-gray-100'
                     />
                   </div>
 
                   <div className='mb-4'>
-                    <label
-                      htmlFor='asunto'
-                      className='block text-gray-700 mb-2'
-                    >
-                      Asunto
-                    </label>
                     <input
                       type='text'
                       id='asunto'
                       value={asunto}
                       onChange={(e) => setAsunto(e.target.value)}
-                      className='w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#A66300]'
+                      placeholder='Asunto'
+                      className='w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#A66300] bg-gray-100'
                     />
                   </div>
 
                   <div className='mb-6'>
-                    <label
-                      htmlFor='mensaje'
-                      className='block text-gray-700 mb-2'
-                    >
-                      Mensaje *
-                    </label>
                     <textarea
                       id='mensaje'
                       value={mensaje}
                       onChange={(e) => setMensaje(e.target.value)}
-                      className='w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#A66300] h-32'
+                      placeholder='Mensaje *'
+                      className='w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#A66300] bg-gray-100 h-32'
                       rows='4'
                     ></textarea>
                   </div>
