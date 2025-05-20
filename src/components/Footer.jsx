@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import 'leaflet/dist/leaflet.css'; // ✅ Importar CSS al principio
-import L from 'leaflet'; // ✅ Usar import, no require
+import 'leaflet/dist/leaflet.css'; 
+import L from 'leaflet';
 
 const Footer = () => {
   useEffect(() => {
     const container = document.getElementById('map');
     if (container && container._leaflet_id) {
-      container._leaflet_id = null; // Evita error al recargar
+      container._leaflet_id = null;
     }
 
     const etsiiLocation = [40.4394, -3.6892];
@@ -18,7 +18,7 @@ const Footer = () => {
     }).addTo(map);
 
     const customIcon = L.icon({
-      iconUrl: '/icons/marker.png',
+      iconUrl: '/public/MarcaMaps.png',
       iconSize: [32, 32],
       iconAnchor: [16, 32],
       popupAnchor: [0, -32],
@@ -40,11 +40,11 @@ const Footer = () => {
     <footer className='w-full bg-blue-800 py-12 text-white'>
       <div className='max-w-5xl mx-auto flex flex-col md:flex-row justify-between px-4'>
         <div className='md:w-1/2 mb-6 md:mb-0 flex items-center justify-center'>
-          <div id='map' className='h-64 w-full md:h-72 rounded-lg shadow-lg'></div>
+          <div id='map' className='h-124 w-full md:h-102 rounded-lg shadow-lg'></div>
         </div>
 
         <div className='md:w-1/2 flex flex-col items-center md:items-end gap-6'>
-          <img src='/LogoETSII-blanco.png' alt='Logo UDII' className='h-20 mb-2' />
+          <img src='/public/LogoETSII-blanco.png' alt='Logo UDII' className='h-30 mb-2' />
           <div className='text-right'>
             <div className='font-bold'>Dirección</div>
             <div>Escuela Técnica Superior de Ingenieros Industriales,</div>
@@ -57,23 +57,28 @@ const Footer = () => {
           <div className='text-right'>
             <div className='font-bold mb-1'>RRSS</div>
             <div className='flex gap-3 mb-2 justify-end'>
-              <a href='https://twitter.com/' target='_blank' rel='noopener noreferrer'>
-                <img src='/icons/twitter.svg' alt='Twitter' className='w-7 h-7' />
+              <a href='https://x.com/industrialesupm' target='_blank' rel='noopener noreferrer'>
+                <img src='/public/TwitterIcon.png' alt='Twitter' className='w-7 h-7' />
               </a>
-              <a href='https://instagram.com/' target='_blank' rel='noopener noreferrer'>
-                <img src='/icons/instagram.svg' alt='Instagram' className='w-7 h-7' />
+              <a href='https://www.instagram.com/industrialesupm/' target='_blank' rel='noopener noreferrer'>
+                <img src='/public/InstagramIcon.png' alt='Instagram' className='w-7 h-7' />
               </a>
-              <a href='https://facebook.com/' target='_blank' rel='noopener noreferrer'>
-                <img src='/icons/facebook.svg' alt='Facebook' className='w-7 h-7' />
+              <a href='https://www.facebook.com/EscuelaIndustrialesUPM/' target='_blank' rel='noopener noreferrer'>
+                <img src='/public/facebookIcon.png' alt='Facebook' className='w-7 h-7' />
               </a>
             </div>
           </div>
-          <a href='/sobre-nosotros' className='underline text-white font-semibold'>
+          <a href='https://www.industriales.upm.es/la-escuela/' className='underline text-white font-semibold' target='_blank' rel='noopener noreferrer'>
             Sobre nosotros
           </a>
-          <div className='text-xs text-gray-200 text-right mt-2'>
-            Sitio Web creado por Javier Herrera y Sergio Berigüete
-          </div>
+
+          <div
+            style={{ fontSize: '8px' }}
+            className='text-gray-200 text-center w-full fixed bottom-1 left-0'>
+              Sitio Web creado por{' '}
+              <a href='https://www.linkedin.com/in/javier-herrera-137165349/' target='_blank' rel='noopener noreferrer' className='underline hover:text-blue-400' >
+              Javier Herrera </a>{' '} y Sergio Berigüete
+          </div>  
         </div>
       </div>
     </footer>
