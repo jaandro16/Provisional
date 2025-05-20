@@ -370,7 +370,7 @@ const CompactHeader = ({ isVisible, onLoginClick }) => {
                 </li>
                 <li className='relative'>
                   <a
-                    href='/contact'
+                    href='/contacto'
                     className='!text-white hover:!text-gray-300 text-base relative group'
                   >
                     <span>Contacto</span>
