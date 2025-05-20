@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Header = ({ onLoginClick }) => {
   return (
     <header className='w-full bg-[#0063A6] text-white h-auto md:h-[159px]'>
@@ -31,14 +33,14 @@ const Header = ({ onLoginClick }) => {
               </li>
               <li className='relative'>
                 <a
-                  href='/contacto'
+                  href='/contacto?showForm=true'
                   className='!text-white hover:!text-gray-300 text-lg relative group hidden md:block'
                 >
                   <span>Contacto</span>
                   <span className='absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full'></span>
                 </a>
                 <a
-                  href='/contacto'
+                  href='/contacto?showForm=true'
                   className='!text-white hover:!text-gray-300 text-lg md:hidden'
                 >
                   Contacto
