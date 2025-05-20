@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import 'leaflet/dist/leaflet.css'; // ✅ Importar CSS al principio
-import L from 'leaflet'; // ✅ Usar import, no require
+import 'leaflet/dist/leaflet.css'; 
+import L from 'leaflet';
 
 const Footer = () => {
   useEffect(() => {
     const container = document.getElementById('map');
     if (container && container._leaflet_id) {
-      container._leaflet_id = null; // Evita error al recargar
+      container._leaflet_id = null;
     }
 
     const etsiiLocation = [40.4394, -3.6892];
@@ -40,11 +40,11 @@ const Footer = () => {
     <footer className='w-full bg-blue-800 py-12 text-white'>
       <div className='max-w-5xl mx-auto flex flex-col md:flex-row justify-between px-4'>
         <div className='md:w-1/2 mb-6 md:mb-0 flex items-center justify-center'>
-          <div id='map' className='h-84 w-full md:h-102 rounded-lg shadow-lg'></div>
+          <div id='map' className='h-124 w-full md:h-102 rounded-lg shadow-lg'></div>
         </div>
 
         <div className='md:w-1/2 flex flex-col items-center md:items-end gap-6'>
-          <img src='/public/LogoETSII-blanco.png' alt='Logo UDII' className='h-20 mb-2' />
+          <img src='/public/LogoETSII-blanco.png' alt='Logo UDII' className='h-30 mb-2' />
           <div className='text-right'>
             <div className='font-bold'>Dirección</div>
             <div>Escuela Técnica Superior de Ingenieros Industriales,</div>
@@ -68,9 +68,10 @@ const Footer = () => {
               </a>
             </div>
           </div>
-          <a href='/sobre-nosotros' className='underline text-white font-semibold'>
+          <a href='https://www.industriales.upm.es/la-escuela/' className='underline text-white font-semibold' target='_blank' rel='noopener noreferrer'>
             Sobre nosotros
           </a>
+
           <div
             style={{ fontSize: '8px' }}
             className='text-gray-200 text-center w-full fixed bottom-1 left-0'>
