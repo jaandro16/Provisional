@@ -100,7 +100,7 @@ const Contacto = () => {
                 </svg>
                 <div>
                   <p className='font-semibold'>Email:</p>
-                  <p>departamento@ejemplo.com</p>
+                  <p>secretaria.industriales@upm.es</p>
                 </div>
               </div>
               <div className='flex items-start'>
@@ -120,7 +120,7 @@ const Contacto = () => {
                 </svg>
                 <div>
                   <p className='font-semibold'>Teléfono:</p>
-                  <p>+123 456 7890</p>
+                  <p>+34 910 67 67 34</p>
                 </div>
               </div>
               <div className='flex items-start'>
@@ -146,7 +146,8 @@ const Contacto = () => {
                 </svg>
                 <div>
                   <p className='font-semibold'>Dirección:</p>
-                  <p>Calle Principal #123, Ciudad, País</p>
+                  <p>Escuela Técnica Superior de Ingenieros Industriales,</p>
+                  <p>JoséGutiérrez Abascal 2, 28006 Madrid</p>
                 </div>
               </div>
             </div>
