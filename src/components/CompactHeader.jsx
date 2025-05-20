@@ -181,7 +181,7 @@ const CompactHeader = ({ isVisible, onLoginClick }) => {
                   >
                     <div className='py-2'>
                       <a
-                        href='/investigacion/proyectos'
+                        href='/proyectos'
                         className='flex items-center px-4 py-2 text-white hover:bg-[#0074c4] transition-colors duration-150'
                       >
                         <svg
@@ -527,7 +527,7 @@ const CompactHeader = ({ isVisible, onLoginClick }) => {
                     <ul className='flex flex-col space-y-2 pl-8'>
                       <li>
                         <a
-                          href='/investigacion/proyectos'
+                          href='proyectos'
                           className='text-white hover:text-gray-300 text-base block py-1 ml-4 flex items-center'
                         >
                           <svg
@@ -625,7 +625,7 @@ const CompactHeader = ({ isVisible, onLoginClick }) => {
                     <ul className='flex flex-col space-y-2 pl-8'>
                       <li>
                         <a
-                          href='/investigacion/proyectos'
+                          href='/proyectos'
                           className='text-white hover:text-gray-300 text-base block py-1 ml-4 flex items-center'
                         >
                           <svg

@@ -9,6 +9,7 @@ import LoginModal from './components/LoginModal';
 import Hero from './components/Hero';
 import './App.css';
 import Contacto from './pages/Contacto';
+import Proyectos from './pages/Proyectos';
 import EquipoPage from './components/EquipoPage';
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/contacto' element={<Contacto />} />
           <Route path='/equipo' element={<EquipoPage />} />
+          <Route path='/proyectos' element={<Proyectos />} />
         </Routes>
       </main>
       <Footer className='relative z-40' />
