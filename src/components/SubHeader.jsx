@@ -157,7 +157,7 @@ const SubHeader = () => {
         <div className='w-full h-full flex items-center justify-center px-2 sm:px-4'>
           <ul className='flex items-center space-x-6 xs:space-x-3 sm:space-x-4 md:space-x-15 font-["Open_Sans"] text-sm sm:text-base'>
             <li>
-              <Link to="/equipo" className="text-gray-700 hover:text-gray-900">
+              <Link to='/equipo' className='text-gray-700 hover:text-gray-900'>
                 Equipo
               </Link>
             </li>
@@ -220,7 +220,7 @@ const SubHeader = () => {
               >
                 <div className='py-2'>
                   <a
-                    href='/investigacion/proyectos'
+                    href='/proyectos'
                     className='flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50'
                   >
                     <svg
