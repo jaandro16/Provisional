@@ -8,7 +8,7 @@ import Home from './pages/Home';
 import LoginModal from './components/LoginModal';
 import Hero from './components/Hero';
 import './App.css';
-import Contacto from './components/Contacto';
+import Contacto from './pages/Contacto';
 import Proyectos from './pages/Proyectos';
 import EquipoPage from './components/EquipoPage';
 
