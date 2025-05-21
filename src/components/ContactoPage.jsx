@@ -185,7 +185,10 @@ const ContactoPage = () => {
                   <p>Nos pondremos en contacto contigo lo antes posible.</p>
                 </div>
               ) : (
-                <div className='bg-white p-6 rounded-lg shadow-md'>
+                <form
+                  className='bg-white p-6 rounded-lg shadow-md'
+                  onSubmit={manejarEnvio}
+                >
                   <h3 className='text-xl font-semibold mb-4'>
                     Envíanos un mensaje
                   </h3>
@@ -250,8 +253,7 @@ const ContactoPage = () => {
                       Cancelar
                     </button>
                     <button
-                      type='button'
-                      onClick={manejarEnvio}
+                      type='submit'
                       className='bg-[#A66300] text-white px-6 py-2 rounded hover:bg-[#C47400] transition-colors duration-300 flex items-center'
                       disabled={enviando}
                     >
@@ -284,7 +286,7 @@ const ContactoPage = () => {
                       )}
                     </button>
                   </div>
-                </div>
+                </form>
               )}
             </div>
           )}
