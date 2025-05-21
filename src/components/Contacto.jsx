@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ContactoPage = () => {
+const Contacto = () => {
   // Estados para los campos del formulario
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
@@ -296,4 +296,4 @@ const ContactoPage = () => {
   );
 };
 
-export default ContactoPage;
+export default Contacto;
