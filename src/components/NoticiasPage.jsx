@@ -4,98 +4,57 @@ const NoticiasPage = () => {
   const noticias = [
     {
       id: 1,
-      titulo: "Nueva Colaboración con Tesla",
-      fecha: "15 Marzo 2024",
-      categoria: "Colaboraciones",
-      resumen: "Iniciamos un proyecto conjunto para el desarrollo de sistemas de conducción autónoma.",
-      imagen: "🚗",
+      titulo: "IX Congreso Universidad y Cooperación al Desarrollo",
+      fecha: "13 Noviembre 2024",
+      categoria: "Eventos",
+      resumen: "Student engagement in sustainable development and international cooperation through computer research projects ha sido aceptado en el IX Congreso Universidad y Cooperación al Desarrollo: Nuevos escenarios y retos que se celebrará en Alcalá de Henares del 27 al 29 de noviembre de 2024.",
+      imagen: "🎓",
       color: "bg-blue-100 border-blue-300",
       etiqueta: "Importante"
     },
     {
       id: 2,
-      titulo: "Conferencia Internacional de IA",
-      fecha: "10 Marzo 2024",
-      categoria: "Eventos",
-      resumen: "Presentamos nuestros avances en machine learning aplicado a la industria 4.0.",
-      imagen: "🎤",
+      titulo: "Texto Ejemplo 1",
+      fecha: "10 Enero 2024",
+      categoria: "Ejemplo",
+      resumen: "Descripción 1 - Este es un ejemplo de noticia para probar el funcionamiento del componente.",
+      imagen: "📝",
       color: "bg-green-100 border-green-300",
-      etiqueta: "Evento"
+      etiqueta: "Ejemplo"
     },
     {
       id: 3,
-      titulo: "Nuevo Laboratorio de Robótica",
-      fecha: "5 Marzo 2024",
-      categoria: "Infraestructura",
-      resumen: "Inauguramos un laboratorio equipado con la última tecnología en robótica industrial.",
-      imagen: "🏗️",
+      titulo: "Texto Ejemplo 2",
+      fecha: "5 Enero 2024",
+      categoria: "Ejemplo",
+      resumen: "Descripción 2 - Otra noticia de ejemplo para verificar que todo funciona correctamente.",
+      imagen: "🔧",
       color: "bg-purple-100 border-purple-300",
-      etiqueta: "Novedad"
+      etiqueta: "Ejemplo"
     },
     {
       id: 4,
-      titulo: "Beca de Investigación Aprobada",
-      fecha: "28 Febrero 2024",
-      categoria: "Financiación",
-      resumen: "Obtenemos financiación europea para investigar en ciberseguridad industrial.",
-      imagen: "💰",
+      titulo: "Texto Ejemplo 3",
+      fecha: "1 Enero 2024",
+      categoria: "Ejemplo",
+      resumen: "Descripción 3 - Tercera noticia de prueba para completar los ejemplos solicitados.",
+      imagen: "⚙️",
       color: "bg-yellow-100 border-yellow-300",
-      etiqueta: "Logro"
-    },
-    {
-      id: 5,
-      titulo: "Publicación en Nature",
-      fecha: "20 Febrero 2024",
-      categoria: "Publicaciones",
-      resumen: "Nuestro artículo sobre IoT industrial es aceptado en la prestigiosa revista Nature.",
-      imagen: "📖",
-      color: "bg-red-100 border-red-300",
-      etiqueta: "Destacado"
-    },
-    {
-      id: 6,
-      titulo: "Workshop de Realidad Aumentada",
-      fecha: "15 Febrero 2024",
-      categoria: "Formación",
-      resumen: "Taller práctico sobre aplicaciones de AR en mantenimiento industrial.",
-      imagen: "🥽",
-      color: "bg-indigo-100 border-indigo-300",
-      etiqueta: "Formación"
-    },
-    {
-      id: 7,
-      titulo: "Premio a la Innovación",
-      fecha: "10 Febrero 2024",
-      categoria: "Reconocimientos",
-      resumen: "Reconocimiento por nuestro sistema de predicción de fallos en maquinaria.",
-      imagen: "🏆",
-      color: "bg-teal-100 border-teal-300",
-      etiqueta: "Premio"
-    },
-    {
-      id: 8,
-      titulo: "Alianza con Siemens",
-      fecha: "5 Febrero 2024",
-      categoria: "Partnerships",
-      resumen: "Acuerdo estratégico para el desarrollo de soluciones de automatización.",
-      imagen: "🤝",
-      color: "bg-orange-100 border-orange-300",
-      etiqueta: "Alianza"
+      etiqueta: "Ejemplo"
     }
   ];
 
   const getEtiquetaColor = (etiqueta) => {
-    const colores = {
-      'Importante': 'bg-red-500',
-      'Evento': 'bg-blue-500',
-      'Novedad': 'bg-green-500',
-      'Logro': 'bg-yellow-500',
-      'Destacado': 'bg-purple-500',
-      'Formación': 'bg-indigo-500',
-      'Premio': 'bg-pink-500',
-      'Alianza': 'bg-teal-500'
-    };
-    return colores[etiqueta] || 'bg-gray-500';
+    switch (etiqueta) {
+      case "Importante":
+        return "bg-red-500";
+      case "Ejemplo":
+        return "bg-gray-600";
+      case "Eventos":
+        return "bg-blue-500";
+      default:
+        return "bg-gray-400";
+    }
   };
 
   return (
@@ -138,7 +97,6 @@ const NoticiasPage = () => {
               key={noticia.id}
               className={`${noticia.color} border-2 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105`}
             >
-              {/* Header de la tarjeta */}
               <div className="p-4">
                 <div className="flex items-start justify-between mb-3">
                   <span className="text-3xl">{noticia.imagen}</span>
