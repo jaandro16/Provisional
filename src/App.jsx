@@ -8,7 +8,7 @@ import Home from './pages/Home';
 import LoginModal from './components/LoginModal';
 import Hero from './components/Hero';
 import './App.css';
-import Contacto from './pages/Contacto';
+import ContactoPage from './components/ContactoPage';
 import Proyectos from './pages/Proyectos';
 import EquipoPage from './components/EquipoPage';
 import InvestigacionPage from './components/InvestigacionPage';
@@ -66,7 +66,7 @@ function App() {
       <main className='flex-grow relative'>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/contacto' element={<Contacto />} />
+          <Route path='/contacto' element={<ContactoPage />} />
           <Route path='/equipo' element={<EquipoPage />} />
           <Route path='/investigacion' element={<InvestigacionPage />} />
           <Route path='/noticias' element={<NoticiasPage />} />
