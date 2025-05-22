@@ -11,6 +11,7 @@ import './App.css';
 import Contacto from './pages/Contacto';
 import Proyectos from './pages/Proyectos';
 import EquipoPage from './components/EquipoPage';
+import InvestigacionPage from './components/InvestigacionPage';
 
 function App() {
   const [showCompactHeader, setShowCompactHeader] = useState(false);
@@ -55,6 +56,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/contacto' element={<Contacto />} />
           <Route path='/equipo' element={<EquipoPage />} />
+          <Route path='/investigacion' element={<InvestigacionPage />} />
           <Route path='/proyectos' element={<Proyectos />} />
         </Routes>
       </main>
