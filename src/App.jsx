@@ -12,7 +12,6 @@ import Contacto from './pages/Contacto';
 import Proyectos from './pages/Proyectos';
 import EquipoPage from './components/EquipoPage';
 import InvestigacionPage from './components/InvestigacionPage';
-import Noticias from './components/Noticias';
 import NoticiasPage from './components/NoticiasPage';
 
 function ScrollToTop() {
