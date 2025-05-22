@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import SubHeader from './components/SubHeader';
 import CompactHeader from './components/CompactHeader';
@@ -14,6 +14,16 @@ import EquipoPage from './components/EquipoPage';
 import InvestigacionPage from './components/InvestigacionPage';
 import Noticias from './components/Noticias';
 import NoticiasPage from './components/NoticiasPage';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   const [showCompactHeader, setShowCompactHeader] = useState(false);
@@ -44,6 +54,7 @@ function App() {
 
   return (
     <div className='flex flex-col min-h-screen relative'>
+      <ScrollToTop />
       <div className='z-40 relative'>
         <Header onLoginClick={() => setIsLoginModalOpen(true)} />
         <SubHeader />
