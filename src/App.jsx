@@ -12,6 +12,8 @@ import Contacto from './pages/Contacto';
 import Proyectos from './pages/Proyectos';
 import EquipoPage from './components/EquipoPage';
 import InvestigacionPage from './components/InvestigacionPage';
+import Noticias from './components/Noticias';
+import NoticiasPage from './components/NoticiasPage';
 
 function App() {
   const [showCompactHeader, setShowCompactHeader] = useState(false);
@@ -57,6 +59,7 @@ function App() {
           <Route path='/contacto' element={<Contacto />} />
           <Route path='/equipo' element={<EquipoPage />} />
           <Route path='/investigacion' element={<InvestigacionPage />} />
+          <Route path='/noticias' element={<NoticiasPage />} />
           <Route path='/proyectos' element={<Proyectos />} />
         </Routes>
       </main>

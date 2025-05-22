@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Noticias = () => {
   return (
@@ -23,7 +24,10 @@ const Noticias = () => {
             ¿Te gustaría conocer todas las noticias acerca de la Unidad Docente
             de Informática Industrial?
           </p>
-          <button className='flex items-center space-x-2 bg-[#0063A6] text-white px-6 py-3 rounded hover:bg-[#0074c4] transition-colors duration-300 w-fit'>
+          <Link
+            to='/noticias'
+            className='flex items-center space-x-2 bg-[#0063A6] text-white px-6 py-3 rounded hover:bg-[#0074c4] transition-colors duration-300 w-fit'
+          >
             <span className="font-['Open_Sans']">Conocer más</span>
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -39,7 +43,7 @@ const Noticias = () => {
                 d='M9 5l7 7-7 7'
               />
             </svg>
-          </button>
+          </Link>
         </div>
       </div>
     </div>
