@@ -243,31 +243,7 @@ const NoticiasPage = () => {
 
 
 
-        {/* Suscripción a noticias */}
-        <div className="mt-16 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg shadow-lg p-8 text-white">
-          <div className="text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              📬 ¿Quieres recibir las últimas noticias?
-            </h2>
-            <p className="mb-6 max-w-2xl mx-auto text-blue-100">
-              Mantente al día con todos los eventos, logros y novedades de la Unidad Docente. 
-              Te enviaremos solo lo más importante, sin spam.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
-              <input 
-                type="email" 
-                placeholder="Introduce tu correo electrónico"
-                className="flex-1 px-4 py-3 rounded-lg text-gray-900 border-0 focus:ring-2 focus:ring-blue-300 focus:outline-none"
-              />
-              <button className="bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-blue-50 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105">
-                ¡Me apunto!
-              </button>
-            </div>
-            <p className="text-xs text-blue-200 mt-4 max-w-md mx-auto">
-              📧 Envíos mensuales • ✨ Contenido exclusivo • 🔒 Datos protegidos
-            </p>
-          </div>
-        </div>
+
       </div>
     </div>
   );
