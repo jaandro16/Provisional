@@ -52,7 +52,7 @@ const Footer = () => {
       </div>
       <div className='text-right'>
         <div className='font-bold'>Teléfono</div>
-        <div>910 67 67 343</div>
+        <div>910 67 67 34</div>
       </div>
       <div className='text-right'>
         <div className='font-bold mb-1'>RRSS</div>
