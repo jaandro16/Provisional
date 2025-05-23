@@ -28,7 +28,7 @@ const Noticias = () => {
             to='/noticias'
             className='flex items-center space-x-2 bg-[#0063A6] text-white px-6 py-3 rounded hover:bg-[#0074c4] transition-colors duration-300 w-fit'
           >
-            <span className="font-['Open_Sans']">Conocer más</span>
+            <span className="font-['Open_Sans']">Conocer mássss</span>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-5 w-5'
