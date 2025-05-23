@@ -65,7 +65,7 @@ const DocenciaSection = () => {
       creditos: 240,
       duracion: '4 años',
       modalidad: 'Semipresencial',
-      plazas: 100,
+      plazas: 80,
       descripcion:
         'Gestión y administración de sistemas de información empresariales.',
       competencias: [
