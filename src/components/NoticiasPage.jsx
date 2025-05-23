@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight, Calendar, Filter } from 'lucide-react';
 
 const NoticiasPage = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [filtroActivo, setFiltroActivo] = useState('Todas');
+
   const noticias = [
     {
       id: 1,
@@ -57,6 +62,40 @@ const NoticiasPage = () => {
     }
   };
 
+  const categorias = ['Todas', 'Colaboraciones', 'Eventos', 'Publicaciones', 'Reconocimientos'];
+
+  // Filtrar noticias
+  const noticiasFiltradas = filtroActivo === 'Todas' 
+    ? noticias 
+    : noticias.filter(noticia => noticia.categoria === filtroActivo);
+
+  // Auto-play del slider (solo si hay noticias filtradas)
+  useEffect(() => {
+    if (isAutoPlaying && noticiasFiltradas.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % noticiasFiltradas.length);
+      }, 4000);
+      return () => clearInterval(interval);
+    }
+  }, [isAutoPlaying, noticiasFiltradas.length]);
+
+  // Reset slide cuando cambie el filtro
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, [filtroActivo]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % noticiasFiltradas.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + noticiasFiltradas.length) % noticiasFiltradas.length);
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -73,87 +112,160 @@ const NoticiasPage = () => {
 
         {/* Filtros */}
         <div className="mb-8 flex flex-wrap justify-center gap-2">
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-full text-sm hover:bg-blue-700 transition-colors">
-            Todas
-          </button>
-          <button className="px-4 py-2 bg-white text-gray-700 rounded-full text-sm hover:bg-gray-100 transition-colors border">
-            Colaboraciones
-          </button>
-          <button className="px-4 py-2 bg-white text-gray-700 rounded-full text-sm hover:bg-gray-100 transition-colors border">
-            Eventos
-          </button>
-          <button className="px-4 py-2 bg-white text-gray-700 rounded-full text-sm hover:bg-gray-100 transition-colors border">
-            Publicaciones
-          </button>
-          <button className="px-4 py-2 bg-white text-gray-700 rounded-full text-sm hover:bg-gray-100 transition-colors border">
-            Reconocimientos
-          </button>
-        </div>
-
-        {/* Grid de noticias */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {noticias.map((noticia) => (
-            <div
-              key={noticia.id}
-              className={`${noticia.color} border-2 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105`}
+          {categorias.map((categoria) => (
+            <button
+              key={categoria}
+              onClick={() => setFiltroActivo(categoria)}
+              className={`px-4 py-2 rounded-full text-sm transition-colors ${
+                filtroActivo === categoria
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white text-gray-700 hover:bg-gray-100 border'
+              }`}
             >
-              <div className="p-4">
-                <div className="flex items-start justify-between mb-3">
-                  <span className="text-3xl">{noticia.imagen}</span>
-                  <span className={`${getEtiquetaColor(noticia.etiqueta)} text-white text-xs px-2 py-1 rounded-full`}>
-                    {noticia.etiqueta}
-                  </span>
-                </div>
-                
-                <div className="mb-2">
-                  <p className="text-xs text-gray-500 mb-1">{noticia.fecha}</p>
-                  <span className="text-xs bg-white px-2 py-1 rounded text-gray-700">
-                    {noticia.categoria}
-                  </span>
-                </div>
-                
-                <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">
-                  {noticia.titulo}
-                </h3>
-                
-                <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                  {noticia.resumen}
-                </p>
-                
-                <button className="text-blue-600 hover:text-blue-800 font-medium text-sm">
-                  Leer más →
-                </button>
-              </div>
-            </div>
+              {categoria}
+            </button>
           ))}
         </div>
 
-        {/* Botón cargar más */}
-        <div className="text-center mt-12">
-          <button className="bg-white border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-lg hover:bg-gray-50 transition-colors duration-300">
-            Cargar más noticias
-          </button>
-        </div>
+        {/* Slider de noticias */}
+        {noticiasFiltradas.length > 0 ? (
+          <div 
+            className="relative bg-white rounded-2xl shadow-lg overflow-hidden mb-12"
+            onMouseEnter={() => setIsAutoPlaying(false)}
+            onMouseLeave={() => setIsAutoPlaying(true)}
+          >
+            {/* Contenedor del slider */}
+            <div className="relative h-[500px] md:h-[400px]">
+              <div 
+                className="flex transition-transform duration-700 ease-in-out h-full"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              >
+                {noticiasFiltradas.map((noticia, index) => (
+                  <div key={noticia.id} className="w-full flex-shrink-0 flex flex-col md:flex-row h-full">
+                    {/* Lado izquierdo - Contenido */}
+                    <div className="md:w-2/3 p-8 md:p-12 flex flex-col justify-center">
+                      <div className="flex items-center gap-4 mb-4">
+                        <span className="text-4xl md:text-5xl">{noticia.imagen}</span>
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                          <span className={`${getEtiquetaColor(noticia.etiqueta)} text-white text-xs px-3 py-1 rounded-full font-medium`}>
+                            {noticia.etiqueta}
+                          </span>
+                          <span className="text-xs bg-gray-100 px-3 py-1 rounded-full text-gray-700">
+                            {noticia.categoria}
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center text-gray-500 text-sm mb-4">
+                        <Calendar className="w-4 h-4 mr-2" />
+                        {noticia.fecha}
+                      </div>
+                      
+                      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 leading-tight">
+                        {noticia.titulo}
+                      </h2>
+                      
+                      <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-6">
+                        {noticia.resumen}
+                      </p>
+                      
+                      <button className="text-blue-600 hover:text-blue-800 font-medium text-base flex items-center group w-fit">
+                        Leer más 
+                        <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
+                      </button>
+                    </div>
 
-        {/* Newsletter */}
+                    {/* Lado derecho - Decoración visual */}
+                    <div className={`md:w-1/3 ${noticia.color} flex items-center justify-center relative overflow-hidden`}>
+                      <div className="text-8xl md:text-9xl opacity-20 transform rotate-12">
+                        {noticia.imagen}
+                      </div>
+                      {/* Patrón decorativo */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-transparent to-white/20"></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Controles de navegación */}
+              {noticiasFiltradas.length > 1 && (
+                <>
+                  <button 
+                    onClick={prevSlide}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-700 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-10 group"
+                  >
+                    <ChevronLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform duration-300" />
+                  </button>
+                  
+                  <button 
+                    onClick={nextSlide}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-700 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-10 group"
+                  >
+                    <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  </button>
+                </>
+              )}
+            </div>
+
+            {/* Indicadores */}
+            {noticiasFiltradas.length > 1 && (
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+                {noticiasFiltradas.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentSlide 
+                        ? 'bg-blue-600 scale-125' 
+                        : 'bg-white/60 hover:bg-white/80'
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
+
+            {/* Barra de progreso */}
+            {noticiasFiltradas.length > 1 && (
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-gray-200">
+                <div 
+                  className="h-full bg-blue-600 transition-all duration-300"
+                  style={{ width: `${((currentSlide + 1) / noticiasFiltradas.length) * 100}%` }}
+                />
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="text-center py-12 bg-white rounded-lg shadow-lg mb-12">
+            <Filter className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+            <p className="text-gray-500 text-lg">No hay noticias para mostrar en esta categoría</p>
+          </div>
+        )}
+
+
+
+        {/* Suscripción a noticias */}
         <div className="mt-16 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg shadow-lg p-8 text-white">
           <div className="text-center">
-            <h2 className="text-2xl font-bold mb-4">
-              📧 Suscríbete a nuestro Newsletter
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              📬 ¿Quieres recibir las últimas noticias?
             </h2>
-            <p className="mb-6 max-w-2xl mx-auto">
-              Recibe las últimas noticias y eventos directamente en tu correo electrónico.
+            <p className="mb-6 max-w-2xl mx-auto text-blue-100">
+              Mantente al día con todos los eventos, logros y novedades de la Unidad Docente. 
+              Te enviaremos solo lo más importante, sin spam.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
               <input 
                 type="email" 
-                placeholder="tu@email.com"
-                className="flex-1 px-4 py-3 rounded-lg text-gray-900"
+                placeholder="Introduce tu correo electrónico"
+                className="flex-1 px-4 py-3 rounded-lg text-gray-900 border-0 focus:ring-2 focus:ring-blue-300 focus:outline-none"
               />
-              <button className="bg-white text-blue-600 px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-300 font-medium">
-                Suscribirse
+              <button className="bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-blue-50 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105">
+                ¡Me apunto!
               </button>
             </div>
+            <p className="text-xs text-blue-200 mt-4 max-w-md mx-auto">
+              📧 Envíos mensuales • ✨ Contenido exclusivo • 🔒 Datos protegidos
+            </p>
           </div>
         </div>
       </div>
