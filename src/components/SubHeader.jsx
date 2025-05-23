@@ -342,7 +342,7 @@ const SubHeader = () => {
               >
                 <div className='py-2'>
                   <a
-                    href='/docencia/tfg'
+                    href='/docencia'
                     className='flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50'
                   >
                     <svg
@@ -365,7 +365,7 @@ const SubHeader = () => {
                   <div className='w-full h-[1px] bg-gray-200'></div>
 
                   <a
-                    href='/docencia/grado'
+                    href='/docencia'
                     className='flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50'
                   >
                     <svg

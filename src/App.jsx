@@ -13,6 +13,7 @@ import Proyectos from './pages/Proyectos';
 import EquipoPage from './components/EquipoPage';
 import InvestigacionPage from './components/InvestigacionPage';
 import NoticiasPage from './components/NoticiasPage';
+import DocenciaSection from './pages/Docencia';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -71,6 +72,7 @@ function App() {
           <Route path='/investigacion' element={<InvestigacionPage />} />
           <Route path='/noticias' element={<NoticiasPage />} />
           <Route path='/proyectos' element={<Proyectos />} />
+          <Route path='/docencia' element={<DocenciaSection />} />
         </Routes>
       </main>
       <Footer className='relative z-40' />
