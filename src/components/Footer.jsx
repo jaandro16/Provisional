@@ -68,7 +68,7 @@ const Footer = () => {
           </a>
         </div>
       </div>
-      <a href='https://www.industriales.upm.es/la-escuela/' className='underline text-white font-semibold' target='_blank' rel='noopener noreferrer'>
+      <a href='https://www.industriales.upm.es/' className='underline text-white font-semibold' target='_blank' rel='noopener noreferrer'>
         Sobre nosotros
       </a>
     </div>
