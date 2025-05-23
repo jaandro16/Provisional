@@ -62,21 +62,21 @@ const Contacto = () => {
     <div className='w-full bg-white py-16 mt-40 relative min-h-[500px] md:min-h-[400px]'>
       <div className='container mx-auto px-4 md:px-8 flex flex-col md:flex-row'>
         {/* Sección de información */}
-        <div className='md:w-1/2 lg:w-2/5 flex flex-col justify-center mb-10 md:mb-0'>
-          <div className='bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200'>
-            <h2 className="font-['Work_Sans'] text-black font-semibold text-3xl md:text-4xl mb-4 text-left">
+        <div className={`${mostrarFormulario ? 'md:w-1/2 lg:w-2/5' : 'w-full'} flex flex-col justify-center mb-10 md:mb-0`}>
+          <div className={`bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200 ${!mostrarFormulario ? 'max-w-lg mx-auto' : ''}`}>
+            <h2 className={`font-['Work_Sans'] text-black font-semibold text-3xl md:text-4xl mb-4 ${!mostrarFormulario ? 'text-center' : 'text-left'}`}>
               Contacto
             </h2>
-            <p className="font-['Open_Sans'] text-black text-lg mb-8 text-left">
+            <p className={`font-['Open_Sans'] text-black text-lg mb-8 ${!mostrarFormulario ? 'text-center' : 'text-left'}`}>
               ¿Tienes alguna duda o sugerencia? Estamos aquí para ayudarte.
             </p>
 
             {/* Información de contacto */}
             <div className='space-y-4 mb-8'>
-              <div className='flex items-start bg-white p-4 rounded-md border border-gray-100'>
+              <div className='flex flex-col items-center bg-white p-4 rounded-md border border-gray-100 text-center'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
-                  className='h-6 w-6 text-[#A66300] mr-3 mt-1'
+                  className='h-6 w-6 text-[#A66300] mb-2'
                   fill='none'
                   viewBox='0 0 24 24'
                   stroke='currentColor'
@@ -93,10 +93,10 @@ const Contacto = () => {
                   <p className='text-black'>secretaria.industriales@upm.es</p>
                 </div>
               </div>
-              <div className='flex items-start bg-white p-4 rounded-md border border-gray-100'>
+              <div className='flex flex-col items-center bg-white p-4 rounded-md border border-gray-100 text-center'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
-                  className='h-6 w-6 text-[#A66300] mr-3 mt-1'
+                  className='h-6 w-6 text-[#A66300] mb-2'
                   fill='none'
                   viewBox='0 0 24 24'
                   stroke='currentColor'
@@ -113,10 +113,10 @@ const Contacto = () => {
                   <p className='text-black'>+34 910 67 67 34</p>
                 </div>
               </div>
-              <div className='flex items-start bg-white p-4 rounded-md border border-gray-100'>
+              <div className='flex flex-col items-center bg-white p-4 rounded-md border border-gray-100 text-center'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
-                  className='h-6 w-6 text-[#A66300] mr-3 mt-1'
+                  className='h-6 w-6 text-[#A66300] mb-2'
                   fill='none'
                   viewBox='0 0 24 24'
                   stroke='currentColor'
@@ -144,10 +144,10 @@ const Contacto = () => {
           </div>
 
           {!mostrarFormulario && (
-            <div className='mt-6'>
+            <div className='mt-6 text-center'>
               <button
                 onClick={abrirFormulario}
-                className='flex items-center space-x-2 bg-[#A66300] text-white px-6 py-3 rounded hover:bg-[#C47400] transition-colors duration-300 w-fit'
+                className='flex items-center space-x-2 bg-[#A66300] text-white px-6 py-3 rounded hover:bg-[#C47400] transition-colors duration-300 mx-auto'
               >
                 <span className="font-['Open_Sans']">Escríbenos</span>
                 <svg
