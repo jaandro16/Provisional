@@ -58,7 +58,7 @@ const Footer = () => {
         <div className='font-bold mb-1'>RRSS</div>
         <div className='flex gap-3 mb-2 justify-end'>
           <a href='https://x.com/industrialesupm' target='_blank' rel='noopener noreferrer'>
-            <img src='/src/assets/TwitterIcon.png' alt='Twitter' className='w-7 h-7' />
+            <img src='/public/TwitterIcon.png' alt='Twitter' className='w-7 h-7' />
           </a>
           <a href='https://www.instagram.com/industrialesupm/' target='_blank' rel='noopener noreferrer'>
             <img src='/public/InstagramIcon.png' alt='Instagram' className='w-7 h-7' />
