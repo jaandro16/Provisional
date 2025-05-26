@@ -64,7 +64,7 @@ const Footer = () => {
             <img src='/public/InstagramIcon.png' alt='Instagram' className='w-7 h-7' />
           </a>
           <a href='https://www.facebook.com/EscuelaIndustrialesUPM/' target='_blank' rel='noopener noreferrer'>
-            <img src='/public/facebookIcon.png' alt='Facebook' className='w-7 h-7' />
+            <img src='/FacebookIcon.png' alt='Facebook' className='w-7 h-7' />
           </a>
         </div>
       </div>
